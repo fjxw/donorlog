@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App General -->
+    <string name="app_name">DonorLog</string>
+    <string name="app_subtitle">Blood Donor Diary</string>
+    <string name="services_header_title">Services &amp; Tools</string>
+    <string name="menu_refresh">Sync with Server</string>
+    <string name="menu_test_notif">Test Notification</string>
+    <string name="stat_donations">Donations</string>
+    <string name="stat_volume">Volume</string>
+    <string name="stat_lives">Lives Saved</string>
+    <string name="service_traffic_title">Blood Traffic</string>
+    <string name="service_traffic_desc">Blood Station Demand</string>
+    <string name="service_roadmap_title">Honored Donor</string>
+    <string name="service_roadmap_desc">4 Schemes (125-FZ)</string>
+    <string name="service_diet_title">Diet Guidelines</string>
+    <string name="service_diet_desc">48h &amp; 24h Diet Prep</string>
+    <string name="service_contra_title">Deferrals</string>
+    <string name="service_contra_desc">Medical Deferral Calculator</string>
+    <string name="service_analytics_title">Analytics</string>
+    <string name="service_analytics_desc">Hemoglobin &amp; Blood Pressure</string>
+    <string name="title_activity_editor">New Donation</string>
+    <string name="title_activity_editor_edit">Edit Donation</string>
+    <string name="title_activity_honored">Honored Donor Roadmap</string>
+    <string name="title_activity_diet">Donor Diet Guide</string>
+    <string name="title_activity_traffic_light">Blood Traffic Light</string>
+    <string name="title_activity_analytics">Health Analytics</string>
+    <string name="title_activity_contraindications">Medical Deferrals</string>
+
+    <!-- Navigation Buttons -->
+    <string name="nav_roadmap">Roadmap</string>
+    <string name="nav_analytics">Analytics</string>
+    <string name="nav_traffic">Traffic</string>
+    <string name="nav_diet">Diet</string>
+    <string name="nav_contra">Deferrals</string>
+
+    <!-- Dashboard -->
+    <string name="header_profile_title">Donor Profile</string>
+    <string name="default_donor_name">Aleksei Aleksandrovich Ryakhovskii</string>
+    <string name="default_blood_group">A(II) Rh+</string>
+    <string name="status_readiness_header">Medical Interval</string>
+    <string name="status_ready_desc">The mandatory recovery interval is fulfilled. You are eligible for your next donation.</string>
+    <string name="status_waiting_prefix">Days until eligible for next donation:</string>
+    <string name="status_days_suffix">days</string>
+    <string name="days_format">%d days</string>
+    <string name="annual_limit_note">12-month donation limit: %1$d of %2$d</string>
+    <string name="honored_donor_short_progress">Honored Donor progress: %d / 40 donations</string>
+    <string name="action_open_roadmap">Detailed Roadmap</string>
+    <string name="action_open_diet">Dietary Guidelines</string>
+    <string name="action_open_traffic">Blood Center Traffic Light</string>
+    <string name="action_add_donation">Add Donation</string>
+    <string name="action_test_notification">Send Eligibility Notification</string>
+    <string name="recent_donations_header">Donation History</string>
+    <string name="empty_donations_placeholder">No donation records yet. Press the button below to register your first donation.</string>
+
+    <!-- Component Types -->
+    <string name="component_whole_blood">Whole Blood</string>
+    <string name="component_plasma">Plasma</string>
+    <string name="component_platelets">Platelets</string>
+    <string name="component_erythrocytes">Red Blood Cells</string>
+
+    <!-- Editor Fields -->
+    <string name="label_component_type">Donation Type</string>
+    <string name="label_date">Donation Date</string>
+    <string name="label_volume">Volume (ml)</string>
+    <string name="label_station">Blood Transfusion Center</string>
+    <string name="label_hemoglobin">Hemoglobin (g/l)</string>
+    <string name="label_pressure">Blood Pressure (sys./diast.)</string>
+    <string name="label_pulse">Heart Rate (bpm)</string>
+    <string name="label_is_gratuitous">Gratuitous donation (with dietary compensation)</string>
+    <string name="label_notes">Medical Notes</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="validation_error_date">Specify a valid date</string>
+    <string name="validation_error_volume">Volume must be between 100 and 800 ml</string>
+    <string name="validation_error_station">Specify medical institution</string>
+    <string name="validation_hemoglobin_warning">Attention: Hemoglobin below standard norm (males >= 130 g/l, females >= 120 g/l)</string>
+    <string name="validation_pressure_warning">Attention: Blood pressure outside standard range (90-149 / 60-89 mmHg)</string>
+
+    <!-- Honored Donor Activity -->
+    <string name="honored_donor_law_title">Federal Law No. 125-FZ, Article 23</string>
+    <string name="honored_donor_scheme_1">Scheme 1: Whole blood donations at least 40 times</string>
+    <string name="honored_donor_scheme_2">Scheme 2: Plasma donations at least 60 times</string>
+    <string name="honored_donor_scheme_3">Scheme 3: Blood at least 25 times + plasma (total 40)</string>
+    <string name="honored_donor_scheme_4">Scheme 4: Blood less than 25 times + plasma (total 60)</string>
+    <string name="honored_donor_best_scheme">Optimal path to title:</string>
+    <string name="honored_donor_benefits_header">Social Support Privileges</string>
+    <string name="honored_donor_benefit_1">• Annual statutory index-linked monetary benefit</string>
+    <string name="honored_donor_benefit_2">• Priority medical care in state medical clinics</string>
+    <string name="honored_donor_benefit_3">• Priority allocation of subsidized sanatorium vouchers</string>
+    <string name="honored_donor_benefit_4">• Entitlement to annual paid leave at preferred season</string>
+    <string name="honored_donor_moscow_header">Regional Benefits (Moscow)</string>
+    <string name="honored_donor_moscow_1">• Free transportation across all municipal public transit</string>
+    <string name="honored_donor_moscow_2">• 50% discount on municipal utility expenses</string>
+    <string name="honored_donor_moscow_3">• Free dental prosthesis manufacturing and repair</string>
+
+    <!-- Diet Memo Activity -->
+    <string name="diet_header_title">Pre-Donation Physical Preparation</string>
+    <string name="diet_rule_interval_48">Strictly prohibited 48 hours prior:</string>
+    <string name="diet_rule_interval_48_desc">• Alcoholic beverages of any type or strength\n• Aspirin, analgin, or analgesic-based medications (72 hours prior)</string>
+    <string name="diet_rule_interval_24">Excluded 24 hours prior:</string>
+    <string name="diet_rule_interval_24_desc">• Fatty, fried, spicy, or smoked food\n• Dairy products of all types (milk, kefir, cheese, butter)\n• Eggs, nuts, sunflower seeds, halva\n• Sausages, fast food, mayonnaise\n• Bananas, avocados, citrus fruits, dates</string>
+    <string name="diet_breakfast_title">Morning meal on the day of donation:</string>
+    <string name="diet_breakfast_desc">• Sweet black or green tea\n• Berry juice, still mineral water, dried fruit compote\n• Crackers, crispbread, oatmeal biscuits without chocolate\n• Water-cooked porridge without butter (oatmeal, buckwheat, rice)\n• Plain boiled pasta without seasonings</string>
+    <string name="diet_test_notification_btn">Send Pre-Donation Diet Reminder</string>
+
+    <!-- Traffic Light & Sync Activity -->
+    <string name="traffic_header_title">Blood Transfusion Center Needs</string>
+    <string name="traffic_filter_group">Filter by Blood Group:</string>
+    <string name="traffic_status_green">Adequate Supply</string>
+    <string name="traffic_status_yellow">Increased Demand</string>
+    <string name="traffic_status_red">Critical Shortage</string>
+    <string name="backend_status_title">Spring Boot Server Status</string>
+    <string name="backend_status_connected">Connected (http://10.0.2.2:8080)</string>
+    <string name="backend_status_offline">Offline Mode (Local SQLite DB)</string>
+    <string name="btn_sync_now">Synchronize Data</string>
+    <string name="sync_success_msg">Synchronization finished successfully</string>
+    <string name="sync_failed_msg">Server is temporarily unavailable. Operating in local mode</string>
+
+    <!-- Analytics Activity -->
+    <string name="analytics_hero_title">Contribution to Saving Lives</string>
+    <string name="analytics_lives_saved_desc">Estimated lives saved</string>
+    <string name="analytics_volume_desc">Total volume</string>
+    <string name="analytics_hemoglobin_title">Hemoglobin Dynamics</string>
+    <string name="analytics_norm_ok">Normal</string>
+    <string name="analytics_hb_norm_note">Standard clinical norm for men: 130–160 g/l. Stable levels guarantee safe donation.</string>
+    <string name="analytics_bp_title">Blood Pressure and Pulse</string>
+    <string name="analytics_bp_norm_note">Permissible range: systolic 90–149 mmHg, diastolic 60–89 mmHg.</string>
+    <string name="analytics_components_title">Donation Component Distribution</string>
+    <string name="analytics_share_cert_btn">Share Donor Certificate</string>
+
+    <!-- Contraindications Activity -->
+    <string name="contra_calc_header">Medical Deferral Calculator</string>
+    <string name="contra_select_label">Medical condition / event</string>
+    <string name="contra_event_date_label">Date of event or recovery</string>
+    <string name="contra_search_hint">Search medical contraindications</string>
+
+    <!-- Widgets -->
+    <string name="widget_status_desc">Donor readiness countdown widget</string>
+    <string name="widget_traffic_desc">Blood transfusion traffic light widget</string>
+    <string name="widget_honored_desc">Circular gauge of Honored Donor progress</string>
+    <string name="widget_metrics_desc">Vital biomarkers and hemoglobin dynamics</string>
+
+    <!-- Notification Strings -->
+    <string name="notif_channel_readiness">Blood Donation Eligibility</string>
+    <string name="notif_channel_diet">Donor Diet Reminder</string>
+    <string name="notif_readiness_title">Donation eligibility window is open</string>
+    <string name="notif_readiness_body">The mandatory recovery interval is fulfilled. You can now schedule your next donation.</string>
+    <string name="notif_diet_title">Donation preparation: diet reminder</string>
+    <string name="notif_diet_body">Reminder: avoid fatty meals, dairy products, and alcohol prior to blood donation.</string>
+</resources>

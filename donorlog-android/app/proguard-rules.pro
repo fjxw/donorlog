@@ -1,0 +1,1 @@
+# DonorLog ProGuard rules

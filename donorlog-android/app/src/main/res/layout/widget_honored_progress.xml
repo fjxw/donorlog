@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetHonoredRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget_card"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <!-- Header Row (Full Width) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_award" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="DonorLog • Почетный донор"
+            android:textColor="#201A1A"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvWidgetTierBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_yellow"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:text="Регулярный донор"
+            android:textColor="#ED6C02"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Content: Circular Gauge + Information Details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Dynamic Canvas-rendered circular gauge -->
+        <ImageView
+            android:id="@+id/ivCircularHonoredWidget"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:contentDescription="Круговая шкала выполнения нормы" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvWidgetHonoredDetail1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="г. Москва: 2 из 20 (осталось 18)"
+                android:textColor="#201A1A"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvWidgetHonoredDetail2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Россия (125-ФЗ): 2 из 40 (осталось 38)"
+                android:textColor="#534343"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvWidgetHonoredScheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Рекомендуемый путь: Схема 1 (Кровь)"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Footer Action (Full Width) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:text="Открыть карту достижений >"
+        android:textColor="#B3261E"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

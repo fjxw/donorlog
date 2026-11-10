@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_sync"
+        android:icon="@drawable/ic_sync"
+        android:title="Обновить данные"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/ic_shield"
+        android:title="Профиль донора"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_pin_widgets"
+        android:title="Добавить виджеты на рабочий стол"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_test_notification"
+        android:title="@string/menu_test_notif"
+        app:showAsAction="never" />
+
+</menu>

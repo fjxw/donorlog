@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App General -->
+    <string name="app_name">DonorLog</string>
+    <string name="app_subtitle">Дневник донора крови</string>
+    <string name="services_header_title">Сервисы и инструменты</string>
+    <string name="menu_refresh">Синхронизировать с сервером</string>
+    <string name="menu_test_notif">Проверить уведомление</string>
+    <string name="stat_donations">Донации</string>
+    <string name="stat_volume">Сдано</string>
+    <string name="stat_lives">Спасенных жизней</string>
+    <string name="service_traffic_title">Светофор крови</string>
+    <string name="service_traffic_desc">Потребность центров крови</string>
+    <string name="service_roadmap_title">Почетный донор</string>
+    <string name="service_roadmap_desc">4 схемы по 125-ФЗ</string>
+    <string name="service_diet_title">Памятка по диете</string>
+    <string name="service_diet_desc">Подготовка за 48 и 24 часа</string>
+    <string name="service_contra_title">Противопоказания</string>
+    <string name="service_contra_desc">Калькулятор медотводов</string>
+    <string name="service_analytics_title">Аналитика</string>
+    <string name="service_analytics_desc">Гемоглобин, давление, пульс</string>
+    <string name="title_activity_editor">Новая донация</string>
+    <string name="title_activity_editor_edit">Редактирование донации</string>
+    <string name="title_activity_honored">Путь к званию Почетный донор</string>
+    <string name="title_activity_diet">Памятка донорской диеты</string>
+    <string name="title_activity_traffic_light">Светофор донорства</string>
+    <string name="title_activity_analytics">Аналитика показателей</string>
+    <string name="title_activity_contraindications">Справочник медотводов</string>
+
+    <!-- Navigation Buttons -->
+    <string name="nav_roadmap">Траектория</string>
+    <string name="nav_analytics">Аналитика</string>
+    <string name="nav_traffic">Светофор</string>
+    <string name="nav_diet">Диета</string>
+    <string name="nav_contra">Отводы/FAQ</string>
+
+    <!-- Dashboard -->
+    <string name="header_profile_title">Карточка донора</string>
+    <string name="default_donor_name">Ряховский Алексей Александрович</string>
+    <string name="default_blood_group">A(II) Rh+</string>
+    <string name="status_readiness_header">Медицинский интервал</string>
+    <string name="status_ready_desc">Интервал после предыдущей кроводачи полностью выдержан. Допуск к следующей донации открыт.</string>
+    <string name="status_waiting_prefix">До следующей возможной донации осталось:</string>
+    <string name="status_days_suffix">дн.</string>
+    <string name="days_format">%d дн.</string>
+    <string name="annual_limit_note">Лимит кроводач за 12 месяцев: %1$d из %2$d</string>
+    <string name="honored_donor_short_progress">Почетный донор России: %d / 40 донаций</string>
+    <string name="action_open_roadmap">Подробная траектория</string>
+    <string name="action_open_diet">Рекомендации по диете</string>
+    <string name="action_open_traffic">Светофор станций переливания</string>
+    <string name="action_add_donation">Добавить запись</string>
+    <string name="action_test_notification">Отправить уведомление о допуске</string>
+    <string name="recent_donations_header">Журнал донаций</string>
+    <string name="empty_donations_placeholder">Записи о донациях пока отсутствуют. Нажмите кнопку добавления для внесения первой кроводачи.</string>
+
+    <!-- Component Types -->
+    <string name="component_whole_blood">Цельная кровь</string>
+    <string name="component_plasma">Плазма</string>
+    <string name="component_platelets">Тромбоциты</string>
+    <string name="component_erythrocytes">Эритроциты</string>
+
+    <!-- Editor Fields -->
+    <string name="label_component_type">Тип донации</string>
+    <string name="label_date">Дата сдачи</string>
+    <string name="label_volume">Объем (мл)</string>
+    <string name="label_station">Станция переливания</string>
+    <string name="label_hemoglobin">Гемоглобин (г/л)</string>
+    <string name="label_pressure">Артериальное давление (сист./диаст.)</string>
+    <string name="label_pulse">Пульс (уд/мин)</string>
+    <string name="label_is_gratuitous">Безвозмездная донация (с компенсацией питания)</string>
+    <string name="label_notes">Медицинские примечания</string>
+    <string name="btn_save">Сохранить</string>
+    <string name="btn_delete">Удалить</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="validation_error_date">Укажите корректную дату</string>
+    <string name="validation_error_volume">Объем должен быть от 100 до 800 мл</string>
+    <string name="validation_error_station">Укажите медицинскую организацию</string>
+    <string name="validation_hemoglobin_warning">Внимание: гемоглобин ниже нормы допуска (мужчины: не менее 130 г/л, женщины: не менее 120 г/л)</string>
+    <string name="validation_pressure_warning">Внимание: показатели артериального давления выходят за пределы нормы (90-149 / 60-89 мм рт. ст.)</string>
+
+    <!-- Honored Donor Activity -->
+    <string name="honored_donor_law_title">Статья 23 Федерального закона № 125-ФЗ</string>
+    <string name="honored_donor_scheme_1">Схема 1: Донация цельной крови не менее 40 раз</string>
+    <string name="honored_donor_scheme_2">Схема 2: Донация плазмы не менее 60 раз</string>
+    <string name="honored_donor_scheme_3">Схема 3: Кровь не менее 25 раз + плазма (суммарно 40)</string>
+    <string name="honored_donor_scheme_4">Схема 4: Кровь менее 25 раз + плазма (суммарно 60)</string>
+    <string name="honored_donor_best_scheme">Оптимальная траектория достижения:</string>
+    <string name="honored_donor_benefits_header">Меры социальной поддержки</string>
+    <string name="honored_donor_benefit_1">• Ежегодная денежная выплата (индексируется государством)</string>
+    <string name="honored_donor_benefit_2">• Внеочередное оказание медицинской помощи в государственных учреждениях</string>
+    <string name="honored_donor_benefit_3">• Первоочередное приобретение по месту работы льготных путевок</string>
+    <string name="honored_donor_benefit_4">• Предоставление ежегодного оплачиваемого отпуска в удобное время года</string>
+    <string name="honored_donor_moscow_header">Региональные льготы (г. Москва)</string>
+    <string name="honored_donor_moscow_1">• Бесплатный проезд на всех видах городского пассажирского транспорта</string>
+    <string name="honored_donor_moscow_2">• Скидка 50% на оплату коммунальных услуг в пределах нормативов</string>
+    <string name="honored_donor_moscow_3">• Бесплатное изготовление и ремонт зубных протезов</string>
+
+    <!-- Diet Memo Activity -->
+    <string name="diet_header_title">Подготовка организма к донации</string>
+    <string name="diet_rule_interval_48">За 48 часов категорически запрещено:</string>
+    <string name="diet_rule_interval_48_desc">• Употребление алкогольных напитков любой крепости\n• Прием аспирина, анальгина и препаратов с анальгетиками (за 72 часа)</string>
+    <string name="diet_rule_interval_24">За 24 часа исключаются из рациона:</string>
+    <string name="diet_rule_interval_24_desc">• Жирная, жареная, острая и копченая пища\n• Молочная продукция всех видов (молоко, кефир, творог, сыр, масло)\n• Яйца, орехи, семечки, халва\n• Колбасные изделия, фастфуд, майонез\n• Бананы, авокадо, цитрусовые, финики</string>
+    <string name="diet_breakfast_title">Утренний рацион в день донации:</string>
+    <string name="diet_breakfast_desc">• Сладкий черный или зеленый чай\n• Морс, минеральная вода, компот из сухофруктов\n• Сушки, сухари, овсяное печенье без шоколада\n• Каша на воде без добавления масла (геркулесовая, гречневая, рисовая)\n• Отварные макароны на воде без соусов</string>
+    <string name="diet_test_notification_btn">Отправить памятку накануне сдачи</string>
+
+    <!-- Traffic Light & Sync Activity -->
+    <string name="traffic_header_title">Потребность центров крови</string>
+    <string name="traffic_filter_group">Фильтр по группе крови:</string>
+    <string name="traffic_status_green">Достаточный запас</string>
+    <string name="traffic_status_yellow">Повышенная потребность</string>
+    <string name="traffic_status_red">Критическая потребность</string>
+    <string name="backend_status_title">Мониторинг центров крови</string>
+    <string name="backend_status_connected">Актуальные данные Службы крови (онлайн)</string>
+    <string name="backend_status_offline">Автономный режим (сохраненные данные)</string>
+    <string name="btn_sync_now">Обновить данные</string>
+    <string name="sync_success_msg">Данные успешно обновлены</string>
+    <string name="sync_failed_msg">Используются сохраненные данные станций</string>
+
+    <!-- Analytics Activity -->
+    <string name="analytics_hero_title">Вклад в спасение жизней</string>
+    <string name="analytics_lives_saved_desc">Спасенных жизней (оценка)</string>
+    <string name="analytics_volume_desc">Суммарный объем</string>
+    <string name="analytics_hemoglobin_title">Динамика гемоглобина</string>
+    <string name="analytics_norm_ok">В норме</string>
+    <string name="analytics_hb_norm_note">Клиническая норма для мужчин: 130–160 г/л. Стабильный показатель гарантирует безопасную кроводачу.</string>
+    <string name="analytics_bp_title">Артериальное давление и пульс</string>
+    <string name="analytics_bp_norm_note">Норма допуска: систолическое 90–149 мм рт. ст., диастолическое 60–89 мм рт. ст.</string>
+    <string name="analytics_components_title">Структура донаций по компонентам</string>
+    <string name="analytics_share_cert_btn">Поделиться справкой донора</string>
+
+    <!-- Contraindications Activity -->
+    <string name="contra_calc_header">Калькулятор срока медицинского отвода</string>
+    <string name="contra_select_label">Тип вмешательства / ограничение</string>
+    <string name="contra_event_date_label">Дата процедуры или выздоровления</string>
+    <string name="contra_search_hint">Поиск по реестру противопоказаний</string>
+
+    <!-- Widgets -->
+    <string name="widget_status_desc">Индикатор готовности донора к сдаче крови</string>
+    <string name="widget_traffic_desc">Оперативный донорский светофор потребности станций переливания</string>
+    <string name="widget_honored_desc">Круговая диаграмма прогресса звания Почетный донор</string>
+    <string name="widget_metrics_desc">Витальные показатели и уровень гемоглобина донора</string>
+
+    <!-- Notification Strings -->
+    <string name="notif_channel_readiness">Допуск к донации крови</string>
+    <string name="notif_channel_diet">Памятка донорской диеты</string>
+    <string name="notif_readiness_title">Допуск к очередной донации открыт</string>
+    <string name="notif_readiness_body">Установленный законом интервал выдержан. Вы можете записаться на станцию переливания крови.</string>
+    <string name="notif_diet_title">Подготовка к донации: соблюдение диеты</string>
+    <string name="notif_diet_body">Напоминание: исключите жирную пищу, молочные продукты и алкоголь перед процедурой сдачи крови.</string>
+</resources>

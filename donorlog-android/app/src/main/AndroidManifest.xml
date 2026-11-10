@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:name=".DonorLogApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DonorLog"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.AuthActivity"
+            android:exported="true"
+            android:label="Авторизация"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.DonationEditorActivity"
+            android:exported="true"
+            android:label="@string/title_activity_editor"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.HonoredDonorActivity"
+            android:exported="true"
+            android:label="@string/title_activity_honored"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.DietMemoActivity"
+            android:exported="true"
+            android:label="@string/title_activity_diet"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.TrafficLightActivity"
+            android:exported="true"
+            android:label="@string/title_activity_traffic_light"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.AnalyticsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_analytics"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.ContraindicationsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_contraindications"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <!-- App Widgets -->
+        <receiver
+            android:name=".widget.DonationStatusWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_donation_status_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.TrafficLightWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_traffic_light_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.HonoredProgressWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_honored_progress_info" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.QuickMetricsWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_quick_metrics_info" />
+        </receiver>
+
+    </application>
+
+</manifest>
