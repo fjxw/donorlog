@@ -16,6 +16,8 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarDiet"
+            app:titleTextColor="@color/donor_text_primary"
+            app:navigationIconTint="@color/donor_text_primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/title_activity_diet"
@@ -135,6 +137,7 @@
                         android:layout_marginTop="8dp"
                         android:lineSpacingExtra="4dp"
                         android:text="@string/diet_breakfast_desc"
+                        android:textColor="@color/donor_text_secondary"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -146,9 +149,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="1dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="?attr/colorOutline">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/donor_surface_card"
+                app:strokeColor="@color/donor_stroke_subtle"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -160,11 +164,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Чек-лист готовности к процедуре"
+                        android:textColor="@color/donor_text_primary"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/cbCheckAlcohol"
+                        android:textColor="@color/donor_text_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -172,18 +178,21 @@
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/cbCheckAnalgesics"
+                        android:textColor="@color/donor_text_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Не принимались анальгетики и аспирин за 72 часа" />
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/cbCheckFatty"
+                        android:textColor="@color/donor_text_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Исключена жирная и молочная пища накануне сдачи" />
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/cbCheckSleep"
+                        android:textColor="@color/donor_text_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Полноценный ночной сон не менее 7-8 часов" />

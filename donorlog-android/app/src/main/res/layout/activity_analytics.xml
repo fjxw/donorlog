@@ -16,6 +16,8 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarAnalytics"
+            app:titleTextColor="@color/donor_text_primary"
+            app:navigationIconTint="@color/donor_text_primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/title_activity_analytics"
@@ -55,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/analytics_hero_title"
-                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColor="@color/donor_text_secondary"
                         android:textSize="12sp"
                         android:textAllCaps="true"
                         android:textStyle="bold" />
@@ -122,9 +124,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="1dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="?attr/colorOutline">
+                app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/donor_surface_card"
+                    app:strokeColor="@color/donor_stroke_subtle"
+                    app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -143,7 +146,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/analytics_hemoglobin_title"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/donor_text_secondary"
                             android:textSize="12sp"
                             android:textAllCaps="true"
                             android:textStyle="bold" />
@@ -167,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="140.0 г/л"
-                        android:textColor="?android:attr/textColorPrimary"
+                        android:textColor="@color/donor_text_primary"
                         android:textSize="26sp"
                         android:textStyle="bold" />
 
@@ -176,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:text="@string/analytics_hb_norm_note"
-                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColor="@color/donor_text_secondary"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -188,9 +191,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="1dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="?attr/colorOutline">
+                app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/donor_surface_card"
+                    app:strokeColor="@color/donor_stroke_subtle"
+                    app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -209,7 +213,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/analytics_bp_title"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/donor_text_secondary"
                             android:textSize="12sp"
                             android:textAllCaps="true"
                             android:textStyle="bold" />
@@ -233,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="120/80 мм рт. ст."
-                        android:textColor="?android:attr/textColorPrimary"
+                        android:textColor="@color/donor_text_primary"
                         android:textSize="26sp"
                         android:textStyle="bold" />
 
@@ -242,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:text="@string/analytics_bp_norm_note"
-                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColor="@color/donor_text_secondary"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -254,9 +258,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="1dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="?attr/colorOutline">
+                app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/donor_surface_card"
+                    app:strokeColor="@color/donor_stroke_subtle"
+                    app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -268,7 +273,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/analytics_components_title"
-                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColor="@color/donor_text_secondary"
                         android:textSize="12sp"
                         android:textAllCaps="true"
                         android:textStyle="bold" />

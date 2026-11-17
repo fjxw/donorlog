@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
-    <style name="Theme.DonorLog" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
-        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+    <!-- Base application theme (unified modern dark canvas inspired by Yandex Music & Google Play) -->
+    <style name="Theme.DonorLog" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/donor_ruby_mid</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">@color/donor_ruby_start</item>
+        <item name="colorOnPrimaryContainer">#FFE4E8</item>
 
-        <item name="colorSecondary">@color/md_theme_light_secondary</item>
-        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        <item name="colorSecondary">@color/donor_amber_warm</item>
+        <item name="colorOnSecondary">#0E1118</item>
+        <item name="colorSecondaryContainer">#1E2433</item>
+        <item name="colorOnSecondaryContainer">@color/donor_text_primary</item>
 
-        <item name="android:colorBackground">@color/md_theme_light_background</item>
-        <item name="colorSurface">@color/md_theme_light_surface</item>
-        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
-        <item name="colorOutline">@color/card_border_light</item>
+        <item name="android:colorBackground">@color/donor_bg_canvas</item>
+        <item name="colorSurface">@color/donor_surface_card</item>
+        <item name="colorOnSurface">@color/donor_text_primary</item>
+        <item name="colorOutline">@color/donor_stroke_subtle</item>
+
+        <item name="android:textColorPrimary">@color/donor_text_primary</item>
+        <item name="android:textColorSecondary">@color/donor_text_secondary</item>
 
         <!-- Status & Navigation Bar Appearance -->
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/md_theme_light_background</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/donor_bg_canvas</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>

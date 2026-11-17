@@ -17,6 +17,8 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarTraffic"
+            app:titleTextColor="@color/donor_text_primary"
+            app:navigationIconTint="@color/donor_text_primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/title_activity_traffic_light"
@@ -38,7 +40,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/traffic_filter_group"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textColor="@color/donor_text_secondary"
             android:textSize="13sp"
             android:textStyle="bold" />
 

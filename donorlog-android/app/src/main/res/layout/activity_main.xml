@@ -101,25 +101,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="14dp"
                             android:background="@drawable/bg_glass_card"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="8dp">
-
-                            <TextView
-                                android:id="@+id/tvBloodGroup"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/default_blood_group"
-                                android:textColor="@color/donor_ruby_glow"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="4dp"
-                                android:layout_height="4dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:background="@drawable/bg_avatar_circle" />
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:clickable="true"
+                            android:focusable="true">
 
                             <TextView
                                 android:id="@+id/tvDonorName"
@@ -127,22 +114,40 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/default_donor_name"
                                 android:textColor="@color/donor_text_primary"
-                                android:textSize="13sp" />
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-                            <View
-                                android:layout_width="4dp"
-                                android:layout_height="4dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:background="@drawable/bg_avatar_circle" />
-
-                            <TextView
-                                android:id="@+id/tvDonorRegionBadge"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="г. Москва"
-                                android:textColor="@color/donor_amber_warm"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:layout_marginTop="4dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvBloodGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/default_blood_group"
+                                    android:textColor="@color/donor_ruby_glow"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+                                <View
+                                    android:layout_width="4dp"
+                                    android:layout_height="4dp"
+                                    android:layout_marginHorizontal="8dp"
+                                    android:background="@drawable/bg_avatar_circle" />
+
+                                <TextView
+                                    android:id="@+id/tvDonorRegionBadge"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="г. Москва"
+                                    android:textColor="@color/donor_amber_warm"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
                         </LinearLayout>
 
                         <!-- Moscow Honored Progress Mini-Pill -->

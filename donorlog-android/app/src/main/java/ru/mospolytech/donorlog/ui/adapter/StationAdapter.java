@@ -70,30 +70,27 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.ViewHold
     }
 
     private void applyStatusTheme(MaterialCardView card, TextView tvStatus, String status) {
+        int strokeColor;
         if ("RED".equalsIgnoreCase(status)) {
             tvStatus.setText("Критическая потребность");
             tvStatus.setTextColor(ContextCompat.getColor(tvStatus.getContext(), R.color.status_red));
             tvStatus.setBackgroundResource(R.drawable.bg_badge_red);
-            if (card != null) {
-                card.setCardBackgroundColor(Color.parseColor("#FFF8F8"));
-                card.setStrokeColor(Color.parseColor("#FFCDD2"));
-            }
+            strokeColor = Color.parseColor("#4DE11D48"); // Subtle ruby stroke
         } else if ("YELLOW".equalsIgnoreCase(status)) {
             tvStatus.setText("Повышенная потребность");
             tvStatus.setTextColor(ContextCompat.getColor(tvStatus.getContext(), R.color.status_yellow));
             tvStatus.setBackgroundResource(R.drawable.bg_badge_yellow);
-            if (card != null) {
-                card.setCardBackgroundColor(Color.parseColor("#FFFBF0"));
-                card.setStrokeColor(Color.parseColor("#FFE0B2"));
-            }
+            strokeColor = Color.parseColor("#4DF59E0B"); // Subtle amber stroke
         } else {
             tvStatus.setText("Достаточный запас");
             tvStatus.setTextColor(ContextCompat.getColor(tvStatus.getContext(), R.color.status_green));
             tvStatus.setBackgroundResource(R.drawable.bg_badge_green);
-            if (card != null) {
-                card.setCardBackgroundColor(Color.parseColor("#F9FCF9"));
-                card.setStrokeColor(Color.parseColor("#C8E6C9"));
-            }
+            strokeColor = Color.parseColor("#4D10B981"); // Subtle emerald stroke
+        }
+        if (card != null) {
+            card.setCardBackgroundColor(ContextCompat.getColor(card.getContext(), R.color.donor_surface_card));
+            card.setStrokeColor(strokeColor);
+            card.setStrokeWidth(3);
         }
     }
 

@@ -17,6 +17,8 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarContra"
+            app:titleTextColor="@color/donor_text_primary"
+            app:navigationIconTint="@color/donor_text_primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/title_activity_contraindications"
@@ -51,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/contra_calc_header"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:textColor="@color/donor_text_secondary"
                     android:textSize="12sp"
                     android:textAllCaps="true"
                     android:textStyle="bold" />
@@ -114,6 +116,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSearchContra"
+                        android:textColor="@color/donor_text_primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />

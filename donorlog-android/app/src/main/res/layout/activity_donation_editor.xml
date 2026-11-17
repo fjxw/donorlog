@@ -16,6 +16,8 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarEditor"
+            app:titleTextColor="@color/donor_text_primary"
+            app:navigationIconTint="@color/donor_text_primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/title_activity_editor"
@@ -46,6 +48,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/actvComponentType"
+                    android:textColor="@color/donor_text_primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -113,7 +116,7 @@
                 android:layout_marginTop="18dp"
                 android:text="Медицинские показатели перед донацией"
                 android:textSize="14sp"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/donor_text_secondary"
                 android:textStyle="bold" />
 
             <!-- Hemoglobin -->
@@ -127,6 +130,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etHemoglobin"
+                        android:textColor="@color/donor_text_primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
@@ -186,6 +190,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPulse"
+                    android:textColor="@color/donor_text_primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -195,6 +200,7 @@
             <!-- Gratuitous Checkbox -->
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cbGratuitous"
+                android:textColor="@color/donor_text_primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -212,6 +218,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNotes"
+                    android:textColor="@color/donor_text_primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"

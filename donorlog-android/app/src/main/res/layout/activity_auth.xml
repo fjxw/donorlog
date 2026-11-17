@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Персональный дневник и траектория донора"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/donor_text_secondary"
                 android:textSize="13sp" />
 
             <!-- Mode Switcher: Login / Register -->
@@ -77,7 +77,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/donor_surface_card"
+                app:strokeColor="@color/donor_stroke_subtle"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -146,7 +149,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Основной регион донаций:"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/donor_text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
@@ -180,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Выбор региона г. Москва активирует расчет траектории и региональных льгот «Почетный донор Москвы» по Закону № 70."
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/donor_text_secondary"
                             android:textSize="11sp" />
 
                         <!-- Blood Group Section -->
@@ -189,7 +192,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Группа крови и резус-фактор"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/donor_text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
