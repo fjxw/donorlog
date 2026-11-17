@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <!-- Radiant Outer Glow Circle -->
+    <path
+        android:fillColor="#22FF2D55"
+        android:pathData="M32,32m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0" />
+    <path
+        android:fillColor="#44E11D48"
+        android:pathData="M32,32m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
+    <!-- Blood Drop Silhouette -->
+    <path
+        android:fillColor="#FF2D55"
+        android:pathData="M32,10 C27,17 18,27 18,36 C18,44 24,50 32,50 C40,50 46,44 46,36 C46,27 37,17 32,10 Z" />
+    <!-- Pulse Line Accent across droplet -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M23,37 L28,37 L30,31 L33,43 L36,34 L38,37 L41,37" />
+</vector>

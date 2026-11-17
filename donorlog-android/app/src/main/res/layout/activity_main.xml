@@ -7,13 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="?android:attr/colorBackground">
+    android:background="@color/donor_bg_canvas">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSurface">
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -21,6 +22,8 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
             app:subtitle="@string/app_subtitle"
+            app:titleTextColor="@color/donor_text_primary"
+            app:subtitleTextColor="@color/donor_text_secondary"
             app:titleCentered="false"
             app:menu="@menu/menu_main" />
 
@@ -41,185 +44,122 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="96dp">
+                android:paddingBottom="100dp">
 
-                <!-- 1. Hero Medical Readiness Card (Top Placement) -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardIntervalStatus"
+                <!-- 1. YANDEX MUSIC "MY WAVE" STYLE HERO BANNER -->
+                <FrameLayout
+                    android:id="@+id/layoutHeroWave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="12dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="#C8E6C9"
-                    app:cardBackgroundColor="#F9FCF9">
+                    android:background="@drawable/bg_hero_wave_gradient"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="24dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <!-- Glowing Animated Droplet Pulse -->
+                        <ImageView
+                            android:id="@+id/ivHeroPulse"
+                            android:layout_width="68dp"
+                            android:layout_height="68dp"
+                            android:src="@drawable/ic_blood_pulse_spark" />
+
+                        <!-- Main Countdown Title -->
+                        <TextView
+                            android:id="@+id/tvIntervalBadge"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/status_readiness_header"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp"
-                                android:textAllCaps="true"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvIntervalBadge"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/bg_badge_green"
-                                android:paddingHorizontal="10dp"
-                                android:paddingVertical="4dp"
-                                android:text="Допущен к сдаче"
-                                android:textColor="@color/status_green"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/bg_badge_green"
+                            android:paddingHorizontal="14dp"
+                            android:paddingVertical="5dp"
+                            android:text="Допущен к сдаче"
+                            android:textColor="@color/status_green"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvIntervalDescription"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
                             android:text="@string/status_ready_desc"
-                            android:textColor="#191C1E"
-                            android:textSize="14sp"
+                            android:textColor="@color/donor_text_primary"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Рекомендуемый компонент: цельная кровь (450 мл)"
-                            android:textColor="?android:attr/textColorSecondary"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 2. Digital Donor Passport Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardDonorProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="10dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="1dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="?attr/colorOutline">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
+                        <!-- Glass Pill: Donor Quick Info -->
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:id="@+id/cardDonorProfile"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/bg_glass_card"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/header_profile_title"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp"
-                                android:textAllCaps="true"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="RU-DONOR-77-231331"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tvDonorName"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/default_donor_name"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvDonorRegionBadge"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="6dp"
-                                android:background="@drawable/bg_badge_yellow"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="3dp"
-                                android:text="г. Москва"
-                                android:textColor="?attr/colorPrimary"
-                                android:textSize="11sp"
-                                android:textStyle="bold" />
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp">
 
                             <TextView
                                 android:id="@+id/tvBloodGroup"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/bg_badge_red"
-                                android:paddingHorizontal="10dp"
-                                android:paddingVertical="3dp"
                                 android:text="@string/default_blood_group"
-                                android:textColor="?attr/colorPrimary"
-                                android:textStyle="bold"
+                                android:textColor="@color/donor_ruby_glow"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="4dp"
+                                android:layout_height="4dp"
+                                android:layout_marginHorizontal="10dp"
+                                android:background="@drawable/bg_avatar_circle" />
+
+                            <TextView
+                                android:id="@+id/tvDonorName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/default_donor_name"
+                                android:textColor="@color/donor_text_primary"
                                 android:textSize="13sp" />
+
+                            <View
+                                android:layout_width="4dp"
+                                android:layout_height="4dp"
+                                android:layout_marginHorizontal="10dp"
+                                android:background="@drawable/bg_avatar_circle" />
+
+                            <TextView
+                                android:id="@+id/tvDonorRegionBadge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="г. Москва"
+                                android:textColor="@color/donor_amber_warm"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Kell-фактор: Kell- (отрицательный) • Фенотип: CcDee"
-                            android:textColor="?android:attr/textColorSecondary"
-                            android:textSize="12sp" />
-
-                        <!-- Moscow Honored Donor Mini-Card (If Moscow Region) -->
+                        <!-- Moscow Honored Progress Mini-Pill -->
                         <LinearLayout
                             android:id="@+id/layoutHonoredMoscowBanner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical"
-                            android:visibility="visible">
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tvHonoredMoscowShort"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="Почетный донор Москвы: 3 из 20 (15%)"
-                                android:textColor="#B78103"
+                                android:textColor="#FBBF24"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -227,165 +167,355 @@
                                 android:id="@+id/pbHonoredMoscowProgress"
                                 android:layout_width="match_parent"
                                 android:layout_height="6dp"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="6dp"
                                 android:progress="15"
-                                app:indicatorColor="#C59B27"
-                                app:trackColor="#FFF8E1"
+                                app:indicatorColor="#F59E0B"
+                                app:trackColor="#33F59E0B"
                                 app:trackCornerRadius="3dp" />
                         </LinearLayout>
 
+                        <!-- Federal Honored Progress -->
                         <TextView
                             android:id="@+id/tvHonoredShort"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:layout_marginTop="8dp"
-                            android:text="Почетный донор России: 3 из 40 донаций (8%)"
+                            android:text="Почетный донор России: 3 из 40 (8%)"
+                            android:textColor="@color/donor_text_secondary"
                             android:textSize="12sp" />
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
                             android:id="@+id/pbHonoredProgress"
                             android:layout_width="match_parent"
                             android:layout_height="6dp"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="6dp"
                             android:progress="8"
-                            app:indicatorColor="?attr/colorPrimary"
-                            app:trackColor="?attr/colorPrimaryContainer"
+                            app:indicatorColor="@color/donor_ruby_mid"
+                            app:trackColor="#33E11D48"
                             app:trackCornerRadius="3dp" />
 
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
 
-                <!-- 3. Key Metric Stats Row -->
+                <!-- 2. "MY VIBE" / SERVICES HORIZONTAL SNAP CAROUSEL -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Сервисы и навигация"
+                    android:textColor="@color/donor_text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="16dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Card 1: Traffic Light (Ruby Gradient) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardNavTraffic"
+                            android:layout_width="160dp"
+                            android:layout_height="124dp"
+                            android:layout_margin="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="2dp"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_vibe_card_ruby"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:id="@+id/ivTrafficIcon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:src="@drawable/ic_hospital"
+                                    app:tint="#FFFFFF" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:text="Светофор\nкрови"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Card 2: Honored Donor (Purple Gradient) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardNavRoadmap"
+                            android:layout_width="160dp"
+                            android:layout_height="124dp"
+                            android:layout_margin="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="2dp"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_vibe_card_purple"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:id="@+id/ivHonorIcon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:src="@drawable/ic_award"
+                                    app:tint="#FFFFFF" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:text="Почетный\nдонор"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Card 3: Analytics (Emerald Gradient) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardNavAnalytics"
+                            android:layout_width="160dp"
+                            android:layout_height="124dp"
+                            android:layout_margin="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="2dp"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_vibe_card_emerald"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:id="@+id/ivAnalyticsIcon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:src="@drawable/ic_heart"
+                                    app:tint="#FFFFFF" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:text="Аналитика\nздоровья"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Card 4: Diet Memo (Amber Gradient) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardNavDiet"
+                            android:layout_width="160dp"
+                            android:layout_height="124dp"
+                            android:layout_margin="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="2dp"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_vibe_card_amber"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:id="@+id/ivDietIcon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:src="@drawable/ic_restaurant"
+                                    app:tint="#FFFFFF" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:text="Памятка\nдиеты"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Card 5: Contraindications -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardNavContra"
+                            android:layout_width="160dp"
+                            android:layout_height="124dp"
+                            android:layout_margin="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="2dp"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_vibe_card_purple"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:id="@+id/ivContraIcon"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:src="@drawable/ic_shield"
+                                    app:tint="#FFFFFF" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:text="Реестр\nотводов"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- 3. APPLE HEALTH STYLE BENTO STATS GRID -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Показатели донора"
+                    android:textColor="@color/donor_text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <!-- Stat 1: Donations -->
-                    <com.google.android.material.card.MaterialCardView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginEnd="4dp"
-                        app:cardCornerRadius="14dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_bento_card"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tvStatDonationsCount"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingVertical="12dp"
-                            android:paddingHorizontal="4dp">
+                            android:text="3"
+                            android:textColor="@color/donor_ruby_glow"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tvStatDonationsCount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="3"
-                                android:textColor="?attr/colorPrimary"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/stat_donations"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/stat_donations"
+                            android:textColor="@color/donor_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
                     <!-- Stat 2: Volume -->
-                    <com.google.android.material.card.MaterialCardView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="4dp"
-                        app:cardCornerRadius="14dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_bento_card"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tvStatVolumeCount"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingVertical="12dp"
-                            android:paddingHorizontal="4dp">
+                            android:text="1.5 л"
+                            android:textColor="@color/donor_amber_warm"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tvStatVolumeCount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1.5 л"
-                                android:textColor="?attr/colorPrimary"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/stat_volume"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/stat_volume"
+                            android:textColor="@color/donor_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
                     <!-- Stat 3: Lives Saved -->
-                    <com.google.android.material.card.MaterialCardView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginStart="4dp"
-                        app:cardCornerRadius="14dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_bento_card"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tvStatLivesCount"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingVertical="12dp"
-                            android:paddingHorizontal="4dp">
+                            android:text="7"
+                            android:textColor="@color/donor_emerald_vital"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tvStatLivesCount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="7"
-                                android:textColor="?attr/colorPrimary"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/stat_lives"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/stat_lives"
+                            android:textColor="@color/donor_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- 4. GAMIFICATION: Achievements & Badges Ribbon -->
+                <!-- 4. ACHIEVEMENTS RIBBON (Google Play Style) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="12dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -394,7 +524,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Награды и достижения"
-                        android:textSize="15sp"
+                        android:textColor="@color/donor_text_primary"
+                        android:textSize="17sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -402,18 +533,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_badge_yellow"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="2dp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
                         android:text="Ступень: Опытный"
-                        android:textColor="#ED6C02"
-                        android:textSize="11sp"
+                        android:textColor="@color/donor_amber_warm"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="12dp"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="16dp"
                     android:scrollbars="none">
 
                     <LinearLayout
@@ -421,7 +553,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <!-- Badge 1: Первый шаг -->
+                        <!-- Badge 1 -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge1"
                             android:layout_width="@dimen/badge_card_width"
@@ -429,31 +561,32 @@
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="18dp"
                             app:cardElevation="1dp"
+                            app:cardBackgroundColor="#161B26"
                             app:strokeWidth="1dp"
-                            app:strokeColor="#C8E6C9"
-                            app:cardBackgroundColor="#F9FCF9">
+                            app:strokeColor="#283144">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:padding="12dp"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:src="@drawable/ic_award"
-                                    app:tint="#2E7D32" />
+                                    app:tint="@color/donor_emerald_vital" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_marginTop="8dp"
                                     android:text="Первый шаг"
-                                    android:textSize="12sp"
+                                    android:textColor="@color/donor_text_primary"
+                                    android:textSize="13sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -461,13 +594,12 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="Получено"
-                                    android:textColor="#2E7D32"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="@color/donor_emerald_vital"
+                                    android:textSize="11sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Badge 2: Регулярный донор -->
+                        <!-- Badge 2 -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge2"
                             android:layout_width="@dimen/badge_card_width"
@@ -475,31 +607,32 @@
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="18dp"
                             app:cardElevation="1dp"
+                            app:cardBackgroundColor="#161B26"
                             app:strokeWidth="1dp"
-                            app:strokeColor="#C8E6C9"
-                            app:cardBackgroundColor="#F9FCF9">
+                            app:strokeColor="#283144">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:padding="12dp"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:src="@drawable/ic_star"
-                                    app:tint="#2E7D32" />
+                                    app:tint="@color/donor_emerald_vital" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="6dp"
-                                    android:text="Регулярный донор"
-                                    android:textSize="12sp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Регулярный"
+                                    android:textColor="@color/donor_text_primary"
+                                    android:textSize="13sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -507,13 +640,12 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="3 из 3 в год"
-                                    android:textColor="#2E7D32"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="@color/donor_emerald_vital"
+                                    android:textSize="11sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Badge 3: Спасатель жизней -->
+                        <!-- Badge 3 -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge3"
                             android:layout_width="@dimen/badge_card_width"
@@ -521,31 +653,32 @@
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="18dp"
                             app:cardElevation="1dp"
+                            app:cardBackgroundColor="#161B26"
                             app:strokeWidth="1dp"
-                            app:strokeColor="#FFCDD2"
-                            app:cardBackgroundColor="#FFF8F8">
+                            app:strokeColor="#283144">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:padding="12dp"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:src="@drawable/ic_heart"
-                                    app:tint="#B3261E" />
+                                    app:tint="@color/donor_ruby_glow" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="6dp"
-                                    android:text="Спасатель жизней"
-                                    android:textSize="12sp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Спасатель"
+                                    android:textColor="@color/donor_text_primary"
+                                    android:textSize="13sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -553,13 +686,12 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="7 жизней"
-                                    android:textColor="#B3261E"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="@color/donor_ruby_glow"
+                                    android:textSize="11sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Badge 4: Марафонец -->
+                        <!-- Badge 4 -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge4"
                             android:layout_width="@dimen/badge_card_width"
@@ -567,45 +699,45 @@
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="18dp"
                             app:cardElevation="1dp"
+                            app:cardBackgroundColor="#161B26"
                             app:strokeWidth="1dp"
-                            app:strokeColor="#FFE0B2"
-                            app:cardBackgroundColor="#FFFBF0">
+                            app:strokeColor="#283144">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:padding="12dp"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:src="@drawable/ic_shield"
-                                    app:tint="#ED6C02" />
+                                    app:tint="@color/donor_amber_warm" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_marginTop="8dp"
                                     android:text="Марафонец"
-                                    android:textSize="12sp"
+                                    android:textColor="@color/donor_text_primary"
+                                    android:textSize="13sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="3 из 10 донаций"
-                                    android:textColor="#ED6C02"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:text="3 из 10"
+                                    android:textColor="@color/donor_amber_warm"
+                                    android:textSize="11sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Badge 5: Почетный путь -->
+                        <!-- Badge 5 -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge5"
                             android:layout_width="@dimen/badge_card_width"
@@ -613,31 +745,32 @@
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="18dp"
                             app:cardElevation="1dp"
+                            app:cardBackgroundColor="#161B26"
                             app:strokeWidth="1dp"
-                            app:strokeColor="#FFE0B2"
-                            app:cardBackgroundColor="#FFFBF0">
+                            app:strokeColor="#283144">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:padding="12dp"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="28dp"
-                                    android:layout_height="28dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:src="@drawable/ic_star"
-                                    app:tint="#C59B27" />
+                                    app:tint="@color/donor_purple_vibe" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="6dp"
-                                    android:text="Почетный путь"
-                                    android:textSize="12sp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="Почетный"
+                                    android:textColor="@color/donor_text_primary"
+                                    android:textSize="13sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -645,287 +778,21 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="15% выполнено"
-                                    android:textColor="#C59B27"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
+                                    android:textColor="@color/donor_purple_vibe"
+                                    android:textSize="11sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
                     </LinearLayout>
                 </HorizontalScrollView>
 
-                <!-- 5. Section: Donor Services & Tools Header -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/services_header_title"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <!-- Grid Row 1: Traffic Light & Honored Donor -->
+                <!-- 5. RECENT DONATIONS FEED -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:orientation="horizontal">
-
-                    <!-- Service Card: Traffic Light -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardNavTraffic"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="5dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="14dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_hospital"
-                                app:tint="?attr/colorPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/service_traffic_title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/service_traffic_desc"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Service Card: Honored Donor -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardNavRoadmap"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="5dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="14dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_award"
-                                app:tint="?attr/colorPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/service_roadmap_title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/service_roadmap_desc"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-                <!-- Grid Row 2: Diet Memo & Contraindications -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
-
-                    <!-- Service Card: Diet Memo -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardNavDiet"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="5dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="14dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_restaurant"
-                                app:tint="?attr/colorPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/service_diet_title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/service_diet_desc"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Service Card: Contraindications -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardNavContra"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="5dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="1dp"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="?attr/colorOutline">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="14dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_shield"
-                                app:tint="?attr/colorPrimary" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/service_contra_title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/service_contra_desc"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-                <!-- Grid Row 3: Health Analytics Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardNavAnalytics"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="1dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="?attr/colorOutline">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="14dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_heart"
-                            app:tint="?attr/colorPrimary" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/service_analytics_title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="@string/service_analytics_desc"
-                                android:textColor="?android:attr/textColorSecondary"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_arrow_back"
-                            android:rotation="180"
-                            app:tint="?android:attr/textColorSecondary" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 6. Section: Recent Donations Header -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="6dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="12dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -934,7 +801,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/recent_donations_header"
-                        android:textSize="15sp"
+                        android:textColor="@color/donor_text_primary"
+                        android:textSize="17sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -942,10 +810,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_badge_red"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="2dp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
                         android:text="3"
-                        android:textColor="?attr/colorPrimary"
+                        android:textColor="@color/donor_ruby_glow"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -954,11 +822,11 @@
                     android:id="@+id/tvEmptyDonations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="24dp"
                     android:gravity="center"
                     android:text="@string/empty_donations_placeholder"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:textColor="@color/donor_text_secondary"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -970,9 +838,10 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <!-- Floating Action Button for adding donation -->
+    <!-- FLOATING ACTION PILL (Modern Material You FAB) -->
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAddDonation"
         android:layout_width="wrap_content"
@@ -980,6 +849,11 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:text="@string/action_add_donation"
-        app:icon="@drawable/ic_plus" />
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/donor_ruby_mid"
+        app:icon="@drawable/ic_plus"
+        app:iconTint="#FFFFFF"
+        app:cornerRadius="28dp"
+        app:elevation="4dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
