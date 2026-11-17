@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_hero_wave_gradient"
                     android:orientation="vertical"
-                    android:paddingBottom="26dp">
+                    android:paddingBottom="32dp">
 
                     <!-- Seamless Integrated Top Bar (No clunky separate strip!) -->
                     <com.google.android.material.appbar.MaterialToolbar
@@ -53,13 +53,14 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingHorizontal="20dp"
-                        android:paddingTop="6dp">
+                        android:paddingTop="12dp">
 
                         <!-- Glowing Animated Droplet Pulse -->
                         <ImageView
                             android:id="@+id/ivHeroPulse"
                             android:layout_width="68dp"
                             android:layout_height="68dp"
+                            android:layout_marginTop="4dp"
                             android:src="@drawable/ic_blood_pulse_spark" />
 
                         <!-- Main Countdown Title -->
@@ -67,7 +68,7 @@
                             android:id="@+id/tvIntervalBadge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="16dp"
                             android:background="@drawable/bg_badge_green"
                             android:paddingHorizontal="14dp"
                             android:paddingVertical="5dp"
@@ -80,8 +81,9 @@
                             android:id="@+id/tvIntervalDescription"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="12dp"
                             android:gravity="center"
+                            android:lineSpacingExtra="3dp"
                             android:text="@string/status_ready_desc"
                             android:textColor="@color/donor_text_primary"
                             android:textSize="15sp"
@@ -92,12 +94,12 @@
                             android:id="@+id/cardDonorProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="14dp"
+                            android:layout_marginTop="20dp"
                             android:background="@drawable/bg_glass_card"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:paddingHorizontal="20dp"
-                            android:paddingVertical="10dp"
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="12dp"
                             android:clickable="true"
                             android:focusable="true">
 
@@ -113,7 +115,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="6dp"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal">
 
@@ -148,7 +150,7 @@
                             android:id="@+id/layoutHonoredMoscowBanner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="20dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -165,7 +167,7 @@
                                 android:id="@+id/pbHonoredMoscowProgress"
                                 android:layout_width="match_parent"
                                 android:layout_height="6dp"
-                                android:layout_marginTop="6dp"
+                                android:layout_marginTop="8dp"
                                 android:progress="15"
                                 app:indicatorColor="#F59E0B"
                                 app:trackColor="#33F59E0B"
@@ -178,7 +180,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="14dp"
                             android:text="Почетный донор России: 3 из 40 (8%)"
                             android:textColor="@color/donor_text_secondary"
                             android:textSize="12sp" />
@@ -187,7 +189,7 @@
                             android:id="@+id/pbHonoredProgress"
                             android:layout_width="match_parent"
                             android:layout_height="6dp"
-                            android:layout_marginTop="6dp"
+                            android:layout_marginTop="8dp"
                             android:progress="8"
                             app:indicatorColor="@color/donor_ruby_mid"
                             app:trackColor="#33E11D48"
@@ -201,8 +203,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="14dp"
                     android:text="Сервисы и навигация"
                     android:textColor="@color/donor_text_primary"
                     android:textSize="17sp"
@@ -408,8 +410,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="14dp"
                     android:text="Показатели донора"
                     android:textColor="@color/donor_text_primary"
                     android:textSize="17sp"
@@ -552,8 +554,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="14dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -829,8 +831,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="14dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
