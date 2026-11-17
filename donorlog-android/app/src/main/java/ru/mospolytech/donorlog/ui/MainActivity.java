@@ -4,6 +4,8 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +33,7 @@ import ru.mospolytech.donorlog.data.model.DonationEntity;
 import ru.mospolytech.donorlog.data.repository.DonorRepository;
 import ru.mospolytech.donorlog.ui.adapter.DonationAdapter;
 import ru.mospolytech.donorlog.util.MedicalCalculator;
+import ru.mospolytech.donorlog.util.NotificationHelper;
 import ru.mospolytech.donorlog.util.UserSession;
 import ru.mospolytech.donorlog.widget.DonationStatusWidgetProvider;
 import ru.mospolytech.donorlog.widget.HonoredProgressWidgetProvider;
@@ -79,6 +83,17 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         setupUserData();
+        checkNotificationPermission();
+    }
+
+    private void checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
     }
 
     @Override
@@ -103,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_profile) {
             startActivity(new Intent(this, AuthActivity.class));
             return true;
+        } else if (id == R.id.action_test_notification) {
+            NotificationHelper.sendReadinessNotification(this);
+            Toast.makeText(this, "Уведомление о готовности отправлено в шторку", Toast.LENGTH_SHORT).show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -116,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
 
         tvIntervalBadge = findViewById(R.id.tvIntervalBadge);
         tvIntervalDescription = findViewById(R.id.tvIntervalDescription);
+
+        if (tvIntervalBadge != null) {
+            tvIntervalBadge.setOnClickListener(v -> {
+                NotificationHelper.sendReadinessNotification(MainActivity.this);
+                Toast.makeText(MainActivity.this, "Уведомление о готовности отправлено", Toast.LENGTH_SHORT).show();
+            });
+        }
 
         layoutHonoredMoscowBanner = findViewById(R.id.layoutHonoredMoscowBanner);
         tvHonoredMoscowShort = findViewById(R.id.tvHonoredMoscowShort);

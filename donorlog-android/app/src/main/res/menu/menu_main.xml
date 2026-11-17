@@ -14,4 +14,9 @@
         android:title="Профиль донора"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_test_notification"
+        android:title="Тест уведомления о допуске"
+        app:showAsAction="never" />
+
 </menu>
