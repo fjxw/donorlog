@@ -39,7 +39,7 @@
     <string name="default_donor_name">Aleksei Aleksandrovich Ryakhovskii</string>
     <string name="default_blood_group">A(II) Rh+</string>
     <string name="status_readiness_header">Medical Interval</string>
-    <string name="status_ready_desc">The mandatory recovery interval is fulfilled. You are eligible for your next donation.</string>
+    <string name="status_ready_desc">The body has fully recovered. You can schedule your next visit to the blood transfusion center.</string>
     <string name="status_waiting_prefix">Days until eligible for next donation:</string>
     <string name="status_days_suffix">days</string>
     <string name="days_format">%d days</string>

@@ -77,12 +77,12 @@ public final class MedicalCalculator {
         long now = System.currentTimeMillis();
 
         if (now >= nextEligibleMillis) {
-            return new IntervalStatus(true, 0, nextEligibleMillis, "Интервал " + requiredIntervalDays + " дн. выдержан. Допуск открыт.");
+            return new IntervalStatus(true, 0, nextEligibleMillis, "Организм полностью восстановился. Вы можете запланировать следующую кроводачу.");
         } else {
             long diffMillis = nextEligibleMillis - now;
             int daysRemaining = (int) Math.ceil((double) diffMillis / TimeUnit.DAYS.toMillis(1));
             return new IntervalStatus(false, daysRemaining, nextEligibleMillis,
-                    "До окончания восстановительного периода осталось " + daysRemaining + " дн.");
+                    "Восстановительный период соблюдается. Запись будет доступна через " + daysRemaining + " дн.");
         }
     }
 

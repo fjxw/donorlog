@@ -2,4 +2,6 @@
 <resources>
     <dimen name="donation_card_margin_horizontal">0dp</dimen>
     <dimen name="donation_card_margin_vertical">6dp</dimen>
+    <dimen name="badge_card_width">136dp</dimen>
+    <dimen name="badge_card_height">116dp</dimen>
 </resources>

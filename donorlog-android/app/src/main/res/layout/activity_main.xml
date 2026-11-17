@@ -424,8 +424,8 @@
                         <!-- Badge 1: Первый шаг -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge1"
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/badge_card_width"
+                            android:layout_height="@dimen/badge_card_height"
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
@@ -470,8 +470,8 @@
                         <!-- Badge 2: Регулярный донор -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge2"
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/badge_card_width"
+                            android:layout_height="@dimen/badge_card_height"
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
@@ -516,8 +516,8 @@
                         <!-- Badge 3: Спасатель жизней -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge3"
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/badge_card_width"
+                            android:layout_height="@dimen/badge_card_height"
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
@@ -562,8 +562,8 @@
                         <!-- Badge 4: Марафонец -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge4"
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/badge_card_width"
+                            android:layout_height="@dimen/badge_card_height"
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"
@@ -608,8 +608,8 @@
                         <!-- Badge 5: Почетный путь -->
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cardBadge5"
-                            android:layout_width="135dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/badge_card_width"
+                            android:layout_height="@dimen/badge_card_height"
                             android:layout_margin="4dp"
                             android:clickable="true"
                             android:focusable="true"

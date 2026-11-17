@@ -103,13 +103,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_profile) {
             startActivity(new Intent(this, AuthActivity.class));
             return true;
-        } else if (id == R.id.action_pin_widgets) {
-            pinWidgetsToHomeScreen();
-            return true;
-        } else if (id == R.id.action_test_notification) {
-            ru.mospolytech.donorlog.util.NotificationHelper.sendReadinessNotification(this);
-            Toast.makeText(this, "Тестовое уведомление отправлено в строку состояния", Toast.LENGTH_SHORT).show();
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }

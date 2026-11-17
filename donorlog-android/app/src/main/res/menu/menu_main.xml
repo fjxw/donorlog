@@ -14,14 +14,4 @@
         android:title="Профиль донора"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action_pin_widgets"
-        android:title="Добавить виджеты на рабочий стол"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_test_notification"
-        android:title="@string/menu_test_notif"
-        app:showAsAction="never" />
-
 </menu>

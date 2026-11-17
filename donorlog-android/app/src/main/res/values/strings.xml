@@ -39,7 +39,7 @@
     <string name="default_donor_name">Ряховский Алексей Александрович</string>
     <string name="default_blood_group">A(II) Rh+</string>
     <string name="status_readiness_header">Медицинский интервал</string>
-    <string name="status_ready_desc">Интервал после предыдущей кроводачи полностью выдержан. Допуск к следующей донации открыт.</string>
+    <string name="status_ready_desc">Организм полностью восстановился. Вы можете запланировать визит на станцию переливания.</string>
     <string name="status_waiting_prefix">До следующей возможной донации осталось:</string>
     <string name="status_days_suffix">дн.</string>
     <string name="days_format">%d дн.</string>
