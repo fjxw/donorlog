@@ -6,10 +6,28 @@
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarAuth"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Личный кабинет"
+            app:titleTextColor="@color/donor_text_primary"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/donor_text_primary"
+            app:titleCentered="false" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -283,13 +301,23 @@
                 android:visibility="gone"
                 app:cornerRadius="14dp" />
 
+            <!-- Close / Back to Main Screen Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBackToMain"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/donor_text_secondary"
+                android:text="Закрыть и вернуться на главный экран" />
+
             <!-- Skip / Guest Mode -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGuestMode"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="Продолжить без авторизации" />
 
         </LinearLayout>

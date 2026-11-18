@@ -36,7 +36,9 @@ public class AuthActivity extends AppCompatActivity {
     private MaterialButton btnSubmitAuth;
     private MaterialButton btnLogout;
     private MaterialButton btnGuestMode;
+    private MaterialButton btnBackToMain;
     private TextView tvAuthSubtitle;
+    private com.google.android.material.appbar.MaterialToolbar toolbarAuth;
 
     private boolean isRegisterMode = false;
     private UserSession session;
@@ -70,12 +72,15 @@ public class AuthActivity extends AppCompatActivity {
         btnSubmitAuth = findViewById(R.id.btnSubmitAuth);
         btnLogout = findViewById(R.id.btnLogout);
         btnGuestMode = findViewById(R.id.btnGuestMode);
+        btnBackToMain = findViewById(R.id.btnBackToMain);
         tvAuthSubtitle = findViewById(R.id.tvAuthSubtitle);
+        toolbarAuth = findViewById(R.id.toolbarAuth);
     }
 
     private void updateUiState() {
         if (session.isLoggedIn()) {
             // Личный кабинет авторизованного пользователя
+            if (toolbarAuth != null) toolbarAuth.setTitle("Личный кабинет");
             tvAuthSubtitle.setText("Личный кабинет донора · Активный аккаунт");
             btnModeLogin.setText("Личный профиль");
             btnModeRegister.setText("Сменить аккаунт");
@@ -91,6 +96,7 @@ public class AuthActivity extends AppCompatActivity {
             populateExistingData();
         } else {
             // Экран первичного входа / регистрации
+            if (toolbarAuth != null) toolbarAuth.setTitle("Авторизация");
             btnModeLogin.setText("Вход");
             btnModeRegister.setText("Регистрация");
             toggleGroupAuth.check(R.id.btnModeLogin);
@@ -103,6 +109,14 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+        if (toolbarAuth != null) {
+            toolbarAuth.setNavigationOnClickListener(v -> finish());
+        }
+
+        if (btnBackToMain != null) {
+            btnBackToMain.setOnClickListener(v -> finish());
+        }
+
         toggleGroupAuth.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (isChecked) {
                 if (session.isLoggedIn()) {
