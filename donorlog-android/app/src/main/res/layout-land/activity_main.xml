@@ -255,8 +255,11 @@
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="28dp"
+                                    android:gravity="top|center_horizontal"
+                                    android:lines="2"
+                                    android:textAlignment="center"
                                     android:text="@string/stat_donations"
                                     android:textColor="?android:attr/textColorSecondary"
                                     android:textSize="10sp" />
@@ -279,14 +282,18 @@
                                 <TextView
                                     android:id="@+id/tvStatVolumeCount"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="24dp"
+                                    android:gravity="center"
                                     android:text="1.5 л"
                                     android:textColor="?attr/colorPrimary"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="28dp"
+                                    android:gravity="top|center_horizontal"
+                                    android:lines="2"
+                                    android:textAlignment="center"
                                     android:text="@string/stat_volume"
                                     android:textColor="?android:attr/textColorSecondary"
                                     android:textSize="10sp" />
@@ -309,14 +316,18 @@
                                 <TextView
                                     android:id="@+id/tvStatLivesCount"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="24dp"
+                                    android:gravity="center"
                                     android:text="7"
                                     android:textColor="?attr/colorPrimary"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="28dp"
+                                    android:gravity="top|center_horizontal"
+                                    android:lines="2"
+                                    android:textAlignment="center"
                                     android:text="@string/stat_lives"
                                     android:textColor="?android:attr/textColorSecondary"
                                     android:textSize="10sp" />

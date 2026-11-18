@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
             tvIntervalBadge.setTextColor(ContextCompat.getColor(this, R.color.status_green));
             tvIntervalDescription.setText(status.reason);
         } else {
-            tvIntervalBadge.setText(status.daysRemaining + " дн.");
+            tvIntervalBadge.setText("Допуск через " + status.daysRemaining + " дн.");
             tvIntervalBadge.setBackgroundResource(R.drawable.bg_badge_yellow);
             tvIntervalBadge.setTextColor(ContextCompat.getColor(this, R.color.status_yellow));
             tvIntervalDescription.setText(status.reason);
@@ -360,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateHonoredProgress(int wholeBloodCount, int plasmaCount) {
         // Federal
         MedicalCalculator.RoadmapProgress federal = MedicalCalculator.calculateBestRoadmap(wholeBloodCount, plasmaCount);
-        tvHonoredShort.setText(federal.schemeTitle + ": " + federal.completedCount + " из " + federal.targetCount + " (" + federal.percent + "%)");
+        tvHonoredShort.setText("Почетный донор России: " + federal.completedCount + " из " + federal.targetCount + " (" + federal.percent + "%)");
         pbHonoredProgress.setProgress(federal.percent);
 
         // Moscow (if region is Moscow)

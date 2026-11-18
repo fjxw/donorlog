@@ -7,8 +7,8 @@
     <string name="menu_refresh">Синхронизировать с сервером</string>
     <string name="menu_test_notif">Проверить уведомление</string>
     <string name="stat_donations">Донации</string>
-    <string name="stat_volume">Объем</string>
-    <string name="stat_lives">Спасенных</string>
+    <string name="stat_volume">Сдано</string>
+    <string name="stat_lives">Спасенных&#10;жизней</string>
     <string name="service_traffic_title">Светофор крови</string>
     <string name="service_traffic_desc">Потребность центров крови</string>
     <string name="service_roadmap_title">Почетный донор</string>

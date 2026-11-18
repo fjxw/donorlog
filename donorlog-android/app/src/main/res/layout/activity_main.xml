@@ -6,7 +6,7 @@
     android:id="@+id/rootMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     android:background="@color/donor_bg_canvas">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -38,7 +38,9 @@
                     <com.google.android.material.appbar.MaterialToolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
+                        android:layout_height="wrap_content"
+                        android:minHeight="?attr/actionBarSize"
+                        android:paddingTop="32dp"
                         android:background="@android:color/transparent"
                         app:elevation="0dp"
                         app:title="@string/app_name"
@@ -171,7 +173,8 @@
                                 android:progress="15"
                                 app:indicatorColor="#F59E0B"
                                 app:trackColor="#33F59E0B"
-                                app:trackCornerRadius="3dp" />
+                                app:trackCornerRadius="3dp"
+                                app:trackStopIndicatorSize="0dp" />
                         </LinearLayout>
 
                         <!-- Federal Honored Progress -->
@@ -182,7 +185,8 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="14dp"
                             android:text="Почетный донор России: 3 из 40 (8%)"
-                            android:textColor="@color/donor_text_secondary"
+                            android:textColor="#FB7185"
+                            android:textStyle="bold"
                             android:textSize="12sp" />
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -193,7 +197,8 @@
                             android:progress="8"
                             app:indicatorColor="@color/donor_ruby_mid"
                             app:trackColor="#33E11D48"
-                            app:trackCornerRadius="3dp" />
+                            app:trackCornerRadius="3dp"
+                            app:trackStopIndicatorSize="0dp" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -419,7 +424,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="96dp"
+                    android:layout_height="102dp"
                     android:layout_marginHorizontal="16dp"
                     android:baselineAligned="false"
                     android:orientation="horizontal">
@@ -441,24 +446,26 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="10dp">
+                            android:paddingHorizontal="4dp"
+                            android:paddingVertical="8dp">
 
                             <TextView
                                 android:id="@+id/tvStatDonationsCount"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="32dp"
+                                android:gravity="center"
                                 android:text="3"
                                 android:textColor="@color/donor_ruby_glow"
-                                android:textSize="24sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:ellipsize="end"
-                                android:maxLines="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="2dp"
+                                android:gravity="top|center_horizontal"
+                                android:lines="2"
+                                android:textAlignment="center"
                                 android:text="@string/stat_donations"
                                 android:textColor="@color/donor_text_secondary"
                                 android:textSize="12sp" />
@@ -482,24 +489,26 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="10dp">
+                            android:paddingHorizontal="4dp"
+                            android:paddingVertical="8dp">
 
                             <TextView
                                 android:id="@+id/tvStatVolumeCount"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="32dp"
+                                android:gravity="center"
                                 android:text="1.5 л"
                                 android:textColor="@color/donor_amber_warm"
-                                android:textSize="24sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:ellipsize="end"
-                                android:maxLines="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="2dp"
+                                android:gravity="top|center_horizontal"
+                                android:lines="2"
+                                android:textAlignment="center"
                                 android:text="@string/stat_volume"
                                 android:textColor="@color/donor_text_secondary"
                                 android:textSize="12sp" />
@@ -523,24 +532,26 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="10dp">
+                            android:paddingHorizontal="4dp"
+                            android:paddingVertical="8dp">
 
                             <TextView
                                 android:id="@+id/tvStatLivesCount"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="32dp"
+                                android:gravity="center"
                                 android:text="7"
                                 android:textColor="@color/donor_emerald_vital"
-                                android:textSize="24sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:ellipsize="end"
-                                android:maxLines="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="2dp"
+                                android:gravity="top|center_horizontal"
+                                android:lines="2"
+                                android:textAlignment="center"
                                 android:text="@string/stat_lives"
                                 android:textColor="@color/donor_text_secondary"
                                 android:textSize="12sp" />
