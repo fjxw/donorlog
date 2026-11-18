@@ -16,6 +16,7 @@ import ru.mospolytech.donorlog.data.local.DonationDao;
 import ru.mospolytech.donorlog.data.model.BloodStationEntity;
 import ru.mospolytech.donorlog.data.model.DonationEntity;
 import ru.mospolytech.donorlog.data.remote.DonorApiClient;
+import ru.mospolytech.donorlog.util.UserSession;
 
 public class DonorRepository {
 
@@ -26,12 +27,14 @@ public class DonorRepository {
     private final DonorApiClient apiClient;
     private final ExecutorService executor;
     private final Handler mainHandler;
+    private final UserSession session;
 
     public interface RepoCallback<T> {
         void onComplete(T result);
     }
 
     private DonorRepository(Context context) {
+        this.session = UserSession.getInstance(context);
         AppDatabase db = AppDatabase.getInstance(context);
         this.donationDao = db.donationDao();
         this.bloodStationDao = db.bloodStationDao();
@@ -54,8 +57,9 @@ public class DonorRepository {
     }
 
     public void getAllDonations(RepoCallback<List<DonationEntity>> callback) {
+        final String userId = session.getEmail();
         executor.execute(() -> {
-            List<DonationEntity> list = donationDao.getAllDonations();
+            List<DonationEntity> list = donationDao.getAllDonations(userId);
             mainHandler.post(() -> callback.onComplete(list));
         });
     }
@@ -68,13 +72,17 @@ public class DonorRepository {
     }
 
     public void getLastDonation(RepoCallback<DonationEntity> callback) {
+        final String userId = session.getEmail();
         executor.execute(() -> {
-            DonationEntity item = donationDao.getLastDonation();
+            DonationEntity item = donationDao.getLastDonation(userId);
             mainHandler.post(() -> callback.onComplete(item));
         });
     }
 
     public void insertDonation(DonationEntity donation, RepoCallback<Long> callback) {
+        if (donation.getUserId() == null || donation.getUserId().trim().isEmpty()) {
+            donation.setUserId(session.getEmail());
+        }
         executor.execute(() -> {
             long id = donationDao.insert(donation);
             mainHandler.post(() -> {
@@ -84,6 +92,9 @@ public class DonorRepository {
     }
 
     public void updateDonation(DonationEntity donation, RepoCallback<Void> callback) {
+        if (donation.getUserId() == null || donation.getUserId().trim().isEmpty()) {
+            donation.setUserId(session.getEmail());
+        }
         executor.execute(() -> {
             donationDao.update(donation);
             mainHandler.post(() -> {
@@ -109,8 +120,9 @@ public class DonorRepository {
     }
 
     public void syncWithBackend(RepoCallback<String> callback) {
+        final String userId = session.getEmail();
         executor.execute(() -> {
-            List<DonationEntity> localDonations = donationDao.getAllDonations();
+            List<DonationEntity> localDonations = donationDao.getAllDonations(userId);
             apiClient.syncDonations(localDonations, new DonorApiClient.ApiCallback<Integer>() {
                 @Override
                 public void onSuccess(Integer result) {
@@ -151,7 +163,7 @@ public class DonorRepository {
                 long twoHundredDaysAgo = now - TimeUnit.DAYS.toMillis(200);
 
                 List<DonationEntity> seedDonations = new ArrayList<>();
-                seedDonations.add(new DonationEntity(
+                DonationEntity d1 = new DonationEntity(
                         "WHOLE_BLOOD",
                         sixtyFiveDaysAgo,
                         450,
@@ -162,8 +174,10 @@ public class DonorRepository {
                         72,
                         true,
                         "Плановая безвозмездная донация цельной крови. Самочувствие хорошее."
-                ));
-                seedDonations.add(new DonationEntity(
+                );
+                d1.setUserId("alexey.ryakhovsky@example.com");
+
+                DonationEntity d2 = new DonationEntity(
                         "WHOLE_BLOOD",
                         oneHundredThirtyDaysAgo,
                         450,
@@ -174,8 +188,10 @@ public class DonorRepository {
                         70,
                         true,
                         "Донация цельной крови. Допуск терапевтом без замечаний."
-                ));
-                seedDonations.add(new DonationEntity(
+                );
+                d2.setUserId("alexey.ryakhovsky@example.com");
+
+                DonationEntity d3 = new DonationEntity(
                         "PLASMA",
                         twoHundredDaysAgo,
                         600,
@@ -186,7 +202,12 @@ public class DonorRepository {
                         74,
                         true,
                         "Плазмаферез аппаратный. Процедура прошла штатно."
-                ));
+                );
+                d3.setUserId("alexey.ryakhovsky@example.com");
+
+                seedDonations.add(d1);
+                seedDonations.add(d2);
+                seedDonations.add(d3);
                 donationDao.insertAll(seedDonations);
             }
 

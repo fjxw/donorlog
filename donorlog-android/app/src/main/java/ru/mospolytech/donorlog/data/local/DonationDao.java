@@ -29,17 +29,29 @@ public interface DonationDao {
     @Query("DELETE FROM donations WHERE id = :id")
     void deleteById(long id);
 
+    @Query("SELECT * FROM donations WHERE (userId = :userId OR (:userId = 'alexey.ryakhovsky@example.com' AND (userId IS NULL OR userId = ''))) ORDER BY donationDate DESC")
+    List<DonationEntity> getAllDonations(String userId);
+
     @Query("SELECT * FROM donations ORDER BY donationDate DESC")
     List<DonationEntity> getAllDonations();
 
     @Query("SELECT * FROM donations WHERE id = :id LIMIT 1")
     DonationEntity getById(long id);
 
+    @Query("SELECT * FROM donations WHERE (userId = :userId OR (:userId = 'alexey.ryakhovsky@example.com' AND (userId IS NULL OR userId = ''))) ORDER BY donationDate DESC LIMIT 1")
+    DonationEntity getLastDonation(String userId);
+
     @Query("SELECT * FROM donations ORDER BY donationDate DESC LIMIT 1")
     DonationEntity getLastDonation();
 
+    @Query("SELECT COUNT(*) FROM donations WHERE (userId = :userId OR (:userId = 'alexey.ryakhovsky@example.com' AND (userId IS NULL OR userId = '')))")
+    int getTotalCount(String userId);
+
     @Query("SELECT COUNT(*) FROM donations")
     int getTotalCount();
+
+    @Query("DELETE FROM donations WHERE userId = :userId")
+    void deleteAllForUser(String userId);
 
     @Query("SELECT COUNT(*) FROM donations WHERE componentType = 'WHOLE_BLOOD'")
     int getWholeBloodCount();

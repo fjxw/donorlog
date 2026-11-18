@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import ru.mospolytech.donorlog.data.model.BloodStationEntity;
 import ru.mospolytech.donorlog.data.model.DonationEntity;
 
-@Database(entities = {DonationEntity.class, BloodStationEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {DonationEntity.class, BloodStationEntity.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "donorlog_db";
