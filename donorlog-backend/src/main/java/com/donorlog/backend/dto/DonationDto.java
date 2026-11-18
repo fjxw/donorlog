@@ -29,6 +29,12 @@ public class DonationDto {
         this.id = id;
     }
 
+    public void setClientUuid(String clientUuid) {
+        if (this.id == null || this.id.isEmpty()) {
+            this.id = clientUuid;
+        }
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -43,6 +49,20 @@ public class DonationDto {
 
     public void setDonationDate(LocalDate donationDate) {
         this.donationDate = donationDate;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonSetter("donationDate")
+    public void setDonationDateObj(Object dateObj) {
+        if (dateObj instanceof String) {
+            try {
+                this.donationDate = LocalDate.parse((String) dateObj);
+            } catch (Exception ignored) {}
+        } else if (dateObj instanceof Number) {
+            long millis = ((Number) dateObj).longValue();
+            this.donationDate = java.time.Instant.ofEpochMilli(millis)
+                    .atZone(java.time.ZoneId.of("Europe/Moscow"))
+                    .toLocalDate();
+        }
     }
 
     public String getComponentType() {
@@ -77,6 +97,12 @@ public class DonationDto {
         this.hemoglobinGramsPerLiter = hemoglobinGramsPerLiter;
     }
 
+    public void setHemoglobin(Object hb) {
+        if (hb instanceof Number) {
+            this.hemoglobinGramsPerLiter = ((Number) hb).intValue();
+        }
+    }
+
     public Integer getSystolicBp() {
         return systolicBp;
     }
@@ -99,6 +125,10 @@ public class DonationDto {
 
     public void setPulseBpm(Integer pulseBpm) {
         this.pulseBpm = pulseBpm;
+    }
+
+    public void setPulse(Integer pulse) {
+        this.pulseBpm = pulse;
     }
 
     public String getWellbeing() {

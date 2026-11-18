@@ -127,21 +127,29 @@ public class DonorApiClient {
 
     public void syncDonations(List<DonationEntity> localDonations, ApiCallback<Integer> callback) {
         Map<String, Object> syncPayload = new HashMap<>();
+        syncPayload.put("userId", "default_user");
         syncPayload.put("donorId", 1);
+        syncPayload.put("lastSyncTimestamp", 0L);
         syncPayload.put("clientTimestamp", System.currentTimeMillis());
+
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US);
 
         List<Map<String, Object>> donationList = new ArrayList<>();
         if (localDonations != null) {
             for (DonationEntity d : localDonations) {
                 Map<String, Object> item = new HashMap<>();
+                item.put("id", "don-" + d.getId());
                 item.put("clientUuid", "local-" + d.getId());
+                item.put("userId", "default_user");
                 item.put("componentType", d.getComponentType());
-                item.put("donationDate", d.getDonationDate());
+                item.put("donationDate", sdf.format(new java.util.Date(d.getDonationDate())));
                 item.put("volumeMl", d.getVolumeMl());
                 item.put("stationName", d.getStationName());
+                item.put("hemoglobinGramsPerLiter", (int) Math.round(d.getHemoglobin()));
                 item.put("hemoglobin", d.getHemoglobin());
                 item.put("systolicBp", d.getSystolicBp());
                 item.put("diastolicBp", d.getDiastolicBp());
+                item.put("pulseBpm", d.getPulse());
                 item.put("pulse", d.getPulse());
                 item.put("gratuitous", d.isGratuitous());
                 item.put("notes", d.getNotes());
@@ -149,6 +157,7 @@ public class DonorApiClient {
                 donationList.add(item);
             }
         }
+        syncPayload.put("dirtyDonations", donationList);
         syncPayload.put("donations", donationList);
 
         String jsonBody = gson.toJson(syncPayload);
@@ -171,6 +180,40 @@ public class DonorApiClient {
                     mainHandler.post(() -> callback.onSuccess(localDonations != null ? localDonations.size() : 0));
                 } else {
                     mainHandler.post(() -> callback.onError("Ошибка синхронизации: " + response.code()));
+                }
+            }
+        });
+    }
+
+    public void syncProfile(String fullName, String email, String bloodGroup, String rhFactor, ApiCallback<Boolean> callback) {
+        Map<String, Object> profilePayload = new HashMap<>();
+        profilePayload.put("userId", "default_user");
+        profilePayload.put("fullName", fullName);
+        profilePayload.put("bloodGroup", bloodGroup);
+        profilePayload.put("rhFactor", rhFactor);
+        profilePayload.put("gender", "MALE");
+        profilePayload.put("updatedAt", System.currentTimeMillis());
+
+        String jsonBody = gson.toJson(profilePayload);
+        RequestBody body = RequestBody.create(jsonBody, JSON);
+
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/donor/profile")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (callback != null) {
+                    mainHandler.post(() -> callback.onError(e.getMessage()));
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (callback != null) {
+                    mainHandler.post(() -> callback.onSuccess(response.isSuccessful()));
                 }
             }
         });

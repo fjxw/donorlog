@@ -270,6 +270,19 @@
                 android:text="Войти в личный кабинет"
                 app:cornerRadius="14dp" />
 
+            <!-- Logout Button (visible when logged in) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/status_red"
+                app:strokeColor="@color/status_red"
+                android:text="Выйти из аккаунта"
+                android:visibility="gone"
+                app:cornerRadius="14dp" />
+
             <!-- Skip / Guest Mode -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGuestMode"

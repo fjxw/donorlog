@@ -42,4 +42,16 @@ public class SyncRequestDto {
     public void setDirtyDonations(List<DonationDto> dirtyDonations) {
         this.dirtyDonations = dirtyDonations;
     }
+
+    public void setDonations(List<DonationDto> donations) {
+        if (this.dirtyDonations == null) {
+            this.dirtyDonations = donations;
+        }
+    }
+
+    public void setDonorId(Object donorId) {
+        if (this.userId == null && donorId != null) {
+            this.userId = String.valueOf(donorId);
+        }
+    }
 }

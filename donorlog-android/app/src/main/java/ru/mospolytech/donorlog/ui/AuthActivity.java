@@ -17,11 +17,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import ru.mospolytech.donorlog.R;
+import ru.mospolytech.donorlog.data.remote.DonorApiClient;
 import ru.mospolytech.donorlog.util.UserSession;
 
 public class AuthActivity extends AppCompatActivity {
 
     private MaterialButtonToggleGroup toggleGroupAuth;
+    private MaterialButton btnModeLogin;
+    private MaterialButton btnModeRegister;
     private TextInputLayout tilFullName;
     private TextInputEditText etFullName;
     private TextInputEditText etEmail;
@@ -31,11 +34,13 @@ public class AuthActivity extends AppCompatActivity {
     private ChipGroup chipGroupRh;
     private ChipGroup chipGroupRegion;
     private MaterialButton btnSubmitAuth;
+    private MaterialButton btnLogout;
     private MaterialButton btnGuestMode;
     private TextView tvAuthSubtitle;
 
     private boolean isRegisterMode = false;
     private UserSession session;
+    private DonorApiClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +48,17 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         session = UserSession.getInstance(this);
+        apiClient = new DonorApiClient();
 
         initViews();
         setupListeners();
-        populateExistingData();
+        updateUiState();
     }
 
     private void initViews() {
         toggleGroupAuth = findViewById(R.id.toggleGroupAuth);
+        btnModeLogin = findViewById(R.id.btnModeLogin);
+        btnModeRegister = findViewById(R.id.btnModeRegister);
         tilFullName = findViewById(R.id.tilFullName);
         etFullName = findViewById(R.id.etFullName);
         etEmail = findViewById(R.id.etEmail);
@@ -60,25 +68,78 @@ public class AuthActivity extends AppCompatActivity {
         chipGroupRh = findViewById(R.id.chipGroupRh);
         chipGroupRegion = findViewById(R.id.chipGroupRegion);
         btnSubmitAuth = findViewById(R.id.btnSubmitAuth);
+        btnLogout = findViewById(R.id.btnLogout);
         btnGuestMode = findViewById(R.id.btnGuestMode);
         tvAuthSubtitle = findViewById(R.id.tvAuthSubtitle);
+    }
 
-        toggleGroupAuth.check(R.id.btnModeLogin);
+    private void updateUiState() {
+        if (session.isLoggedIn()) {
+            // Личный кабинет авторизованного пользователя
+            tvAuthSubtitle.setText("Личный кабинет донора · Активный аккаунт");
+            btnModeLogin.setText("Личный профиль");
+            btnModeRegister.setText("Сменить аккаунт");
+            toggleGroupAuth.check(R.id.btnModeLogin);
+
+            tilFullName.setVisibility(View.VISIBLE);
+            layoutMedicalProfile.setVisibility(View.VISIBLE);
+            btnSubmitAuth.setText("Сохранить изменения профиля");
+
+            if (btnLogout != null) btnLogout.setVisibility(View.VISIBLE);
+            if (btnGuestMode != null) btnGuestMode.setVisibility(View.GONE);
+
+            populateExistingData();
+        } else {
+            // Экран первичного входа / регистрации
+            btnModeLogin.setText("Вход");
+            btnModeRegister.setText("Регистрация");
+            toggleGroupAuth.check(R.id.btnModeLogin);
+
+            if (btnLogout != null) btnLogout.setVisibility(View.GONE);
+            if (btnGuestMode != null) btnGuestMode.setVisibility(View.VISIBLE);
+
+            setRegisterMode(false);
+        }
     }
 
     private void setupListeners() {
         toggleGroupAuth.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (isChecked) {
-                if (checkedId == R.id.btnModeRegister) {
-                    setRegisterMode(true);
+                if (session.isLoggedIn()) {
+                    if (checkedId == R.id.btnModeRegister) {
+                        // Режим смены аккаунта
+                        logoutAndSwitchToAuth();
+                    } else {
+                        updateUiState();
+                    }
                 } else {
-                    setRegisterMode(false);
+                    if (checkedId == R.id.btnModeRegister) {
+                        setRegisterMode(true);
+                    } else {
+                        setRegisterMode(false);
+                    }
                 }
             }
         });
 
         btnSubmitAuth.setOnClickListener(v -> processSubmit());
+
+        if (btnLogout != null) {
+            btnLogout.setOnClickListener(v -> logoutAndSwitchToAuth());
+        }
+
         btnGuestMode.setOnClickListener(v -> proceedToMain());
+    }
+
+    private void logoutAndSwitchToAuth() {
+        session.setLoggedIn(false);
+        session.setName("");
+        session.setEmail("");
+        Toast.makeText(this, "Вы вышли из учетной записи", Toast.LENGTH_SHORT).show();
+        etFullName.setText("");
+        etEmail.setText("");
+        etPassword.setText("");
+        updateUiState();
     }
 
     private void setRegisterMode(boolean register) {
@@ -105,6 +166,16 @@ public class AuthActivity extends AppCompatActivity {
         } else {
             chipGroupRegion.check(R.id.chipRegionOther);
         }
+
+        String bg = session.getBloodGroup();
+        if ("O(I)".equals(bg)) chipGroupBlood.check(R.id.chipBloodO);
+        else if ("B(III)".equals(bg)) chipGroupBlood.check(R.id.chipBloodB);
+        else if ("AB(IV)".equals(bg)) chipGroupBlood.check(R.id.chipBloodAB);
+        else chipGroupBlood.check(R.id.chipBloodA);
+
+        String rh = session.getRhFactor();
+        if ("Rh-".equals(rh)) chipGroupRh.check(R.id.chipRhMinus);
+        else chipGroupRh.check(R.id.chipRhPlus);
     }
 
     private void processSubmit() {
@@ -115,7 +186,7 @@ public class AuthActivity extends AppCompatActivity {
         }
 
         String name = etFullName.getText() != null ? etFullName.getText().toString().trim() : "";
-        if (isRegisterMode && TextUtils.isEmpty(name)) {
+        if ((isRegisterMode || session.isLoggedIn()) && TextUtils.isEmpty(name)) {
             etFullName.setError("Укажите ваше ФИО");
             return;
         }
@@ -132,13 +203,22 @@ public class AuthActivity extends AppCompatActivity {
 
         String rh = chipGroupRh.getCheckedChipId() == R.id.chipRhMinus ? "Rh-" : "Rh+";
 
-        if (isRegisterMode) {
+        if (session.isLoggedIn()) {
             session.saveProfile(name, email, bloodGroup, rh, selectedRegion, true);
-            Toast.makeText(this, "Профиль донора успешно сохранен", Toast.LENGTH_SHORT).show();
+            apiClient.syncProfile(name, email, bloodGroup, rh, null);
+            Toast.makeText(this, "Данные профиля успешно обновлены", Toast.LENGTH_SHORT).show();
+        } else if (isRegisterMode) {
+            session.saveProfile(name, email, bloodGroup, rh, selectedRegion, true);
+            apiClient.syncProfile(name, email, bloodGroup, rh, null);
+            Toast.makeText(this, "Регистрация успешна! Добро пожаловать, " + name, Toast.LENGTH_SHORT).show();
         } else {
-            session.setEmail(email);
-            session.setRegion(selectedRegion);
-            session.setLoggedIn(true);
+            String existingName = session.getName();
+            if (TextUtils.isEmpty(existingName) || existingName.equals("Ряховский Алексей Александрович")) {
+                existingName = "Ряховский Алексей Александрович";
+            }
+            session.saveProfile(existingName, email, bloodGroup, rh, selectedRegion, true);
+            apiClient.syncProfile(existingName, email, bloodGroup, rh, null);
+            Toast.makeText(this, "Успешная авторизация в системе", Toast.LENGTH_SHORT).show();
         }
 
         proceedToMain();
@@ -146,6 +226,7 @@ public class AuthActivity extends AppCompatActivity {
 
     private void proceedToMain() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         finish();
     }

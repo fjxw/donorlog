@@ -91,10 +91,26 @@ if ($BackendRunning) {
         Pop-Location
     }
 
-    # Запуск бэкенда в отдельном окне терминала
-    $BackendRunCmd = "Write-Host '=== DonorLog Spring Boot Backend (Port 8080) ===' -ForegroundColor Cyan; cd '$BackendDir'; if (Test-Path '$BackendJar') { java -jar '$BackendJar' } else { .\gradlew.bat bootRun }"
-    Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $BackendRunCmd
-    Write-Host "      Бэкенд запущен в отдельном окне (http://localhost:8080)" -ForegroundColor Green
+    # Запуск бэкенда через start_backend.bat без проблем с кодировкой путей
+    $StartBackendScript = Join-Path $BaseDir "start_backend.bat"
+    if (-not (Test-Path -LiteralPath $StartBackendScript)) {
+        $StartBackendScript = Join-Path $BackendDir "..\start_backend.bat"
+    }
+
+    Write-Host "      Запуск бэкенда в отдельном окне..." -ForegroundColor Cyan
+    Start-Process cmd.exe -ArgumentList "/c", "start", "`"DonorLog Backend (Port 8080)`"", "`"$StartBackendScript`""
+
+    Write-Host "      Ожидание инициализации REST API (http://localhost:8080)..." -ForegroundColor Gray
+    for ($i = 0; $i -lt 25; $i++) {
+        try {
+            $resp = Invoke-RestMethod -Uri "http://localhost:8080/api/v1/health" -TimeoutSec 2 -ErrorAction SilentlyContinue
+            if ($resp -and $resp.success) {
+                Write-Host "      Бэкенд успешно готов к приему запросов!" -ForegroundColor Green
+                break
+            }
+        } catch {}
+        Start-Sleep -Seconds 1
+    }
 }
 
 # --- 4. ПРОВЕРКА И ПОДГОТОВКА ЭМУЛЯТОРА / УСТРОЙСТВА ---

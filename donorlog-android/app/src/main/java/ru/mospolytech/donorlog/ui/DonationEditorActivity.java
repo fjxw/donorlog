@@ -215,6 +215,7 @@ public class DonationEditorActivity extends AppCompatActivity {
                     notes
             );
             repository.insertDonation(newDonation, id -> {
+                repository.syncWithBackend(null);
                 Toast.makeText(DonationEditorActivity.this, "Донация успешно сохранена", Toast.LENGTH_SHORT).show();
                 finish();
             });
@@ -232,6 +233,7 @@ public class DonationEditorActivity extends AppCompatActivity {
             existingDonation.setUpdatedAt(System.currentTimeMillis());
 
             repository.updateDonation(existingDonation, v -> {
+                repository.syncWithBackend(null);
                 Toast.makeText(DonationEditorActivity.this, "Запись обновлена", Toast.LENGTH_SHORT).show();
                 finish();
             });
