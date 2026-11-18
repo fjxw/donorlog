@@ -2,7 +2,9 @@ package com.donorlog.backend.service;
 
 import com.donorlog.backend.dto.DonorProfileDto;
 import com.donorlog.backend.entity.DonorProfileEntity;
+import com.donorlog.backend.entity.UserEntity;
 import com.donorlog.backend.repository.DonorProfileRepository;
+import com.donorlog.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class DonorProfileService {
 
     private final DonorProfileRepository repository;
+    private final UserRepository userRepository;
 
-    public DonorProfileService(DonorProfileRepository repository) {
+    public DonorProfileService(DonorProfileRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     public DonorProfileDto getProfile(String userId) {
@@ -36,6 +40,24 @@ public class DonorProfileService {
         entity.setUpdatedAt(System.currentTimeMillis());
 
         DonorProfileEntity saved = repository.save(entity);
+
+        // Также синхронизируем с таблицей users для pgAdmin
+        try {
+            String email = (dto.getUserId() != null && dto.getUserId().contains("@"))
+                    ? dto.getUserId()
+                    : "alexey.ryakhovsky@example.com";
+            UserEntity user = userRepository.findByEmail(email).orElseGet(UserEntity::new);
+            user.setEmail(email);
+            user.setFullName(dto.getFullName() != null ? dto.getFullName() : "Ряховский Алексей Александрович");
+            user.setBloodGroup(dto.getBloodGroup());
+            user.setRhFactor(dto.getRhFactor());
+            user.setRegion("г. Москва");
+            if (user.getCreatedAt() == null) {
+                user.setCreatedAt(System.currentTimeMillis());
+            }
+            userRepository.save(user);
+        } catch (Exception ignored) {}
+
         return toDto(saved);
     }
 

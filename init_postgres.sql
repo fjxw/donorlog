@@ -9,7 +9,19 @@
 -- Переключение на базу данных donorlogdb:
 -- \c donorlogdb;
 
--- 2. Таблица профилей доноров (donor_profiles)
+-- 2. Таблица учетных записей пользователей (users)
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    full_name VARCHAR(255) NOT NULL,
+    blood_group VARCHAR(32),
+    rh_factor VARCHAR(16),
+    region VARCHAR(128) DEFAULT 'г. Москва',
+    role VARCHAR(32) DEFAULT 'ROLE_DONOR',
+    created_at BIGINT NOT NULL
+);
+
+-- 2.1 Таблица медицинских профилей доноров (donor_profiles)
 CREATE TABLE IF NOT EXISTS donor_profiles (
     id BIGSERIAL PRIMARY KEY,
     user_id VARCHAR(255) NOT NULL UNIQUE,

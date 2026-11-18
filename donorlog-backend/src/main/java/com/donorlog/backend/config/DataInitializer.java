@@ -4,10 +4,12 @@ import com.donorlog.backend.entity.BloodStationEntity;
 import com.donorlog.backend.entity.ContraindicationEntity;
 import com.donorlog.backend.entity.DonationEntity;
 import com.donorlog.backend.entity.DonorProfileEntity;
+import com.donorlog.backend.entity.UserEntity;
 import com.donorlog.backend.repository.BloodStationRepository;
 import com.donorlog.backend.repository.ContraindicationRepository;
 import com.donorlog.backend.repository.DonationRepository;
 import com.donorlog.backend.repository.DonorProfileRepository;
+import com.donorlog.backend.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,24 +24,38 @@ public class DataInitializer implements CommandLineRunner {
     private final DonationRepository donationRepository;
     private final DonorProfileRepository profileRepository;
     private final ContraindicationRepository contraindicationRepository;
+    private final UserRepository userRepository;
 
     public DataInitializer(BloodStationRepository stationRepository,
                            DonationRepository donationRepository,
                            DonorProfileRepository profileRepository,
-                           ContraindicationRepository contraindicationRepository) {
+                           ContraindicationRepository contraindicationRepository,
+                           UserRepository userRepository) {
         this.stationRepository = stationRepository;
         this.donationRepository = donationRepository;
         this.profileRepository = profileRepository;
         this.contraindicationRepository = contraindicationRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public void run(String... args) {
         long now = System.currentTimeMillis();
 
+        if (userRepository.count() == 0) {
+            userRepository.save(new UserEntity(
+                    "alexey.ryakhovsky@example.com",
+                    "Ряховский Алексей Александрович",
+                    "A(II)",
+                    "Rh+",
+                    "г. Москва",
+                    now
+            ));
+        }
+
         if (profileRepository.count() == 0) {
             DonorProfileEntity profile = new DonorProfileEntity();
-            profile.setUserId("default-user");
+            profile.setUserId("default_user");
             profile.setFullName("Ряховский Алексей Александрович");
             profile.setBloodGroup("A(II)");
             profile.setRhFactor("+");
