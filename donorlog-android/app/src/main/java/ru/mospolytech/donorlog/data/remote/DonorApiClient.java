@@ -186,8 +186,9 @@ public class DonorApiClient {
     }
 
     public void syncProfile(String fullName, String email, String bloodGroup, String rhFactor, ApiCallback<Boolean> callback) {
+        String userId = (email != null && !email.trim().isEmpty()) ? email.trim() : "default_user";
         Map<String, Object> profilePayload = new HashMap<>();
-        profilePayload.put("userId", "default_user");
+        profilePayload.put("userId", userId);
         profilePayload.put("fullName", fullName);
         profilePayload.put("bloodGroup", bloodGroup);
         profilePayload.put("rhFactor", rhFactor);
@@ -214,6 +215,84 @@ public class DonorApiClient {
             public void onResponse(Call call, Response response) {
                 if (callback != null) {
                     mainHandler.post(() -> callback.onSuccess(response.isSuccessful()));
+                }
+            }
+        });
+    }
+
+    public void registerUser(String email, String fullName, String password, String bloodGroup, String rhFactor, String region, ApiCallback<Map<String, Object>> callback) {
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("email", email);
+        payload.put("fullName", fullName);
+        payload.put("password", password);
+        payload.put("bloodGroup", bloodGroup);
+        payload.put("rhFactor", rhFactor);
+        payload.put("region", region);
+
+        String jsonBody = gson.toJson(payload);
+        RequestBody body = RequestBody.create(jsonBody, JSON);
+
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/auth/register")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (callback != null) mainHandler.post(() -> callback.onError(e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String respStr = response.body().string();
+                        Map<String, Object> map = gson.fromJson(respStr, new TypeToken<Map<String, Object>>(){}.getType());
+                        Map<String, Object> userData = (Map<String, Object>) map.get("data");
+                        if (callback != null) mainHandler.post(() -> callback.onSuccess(userData));
+                    } catch (Exception ex) {
+                        if (callback != null) mainHandler.post(() -> callback.onSuccess(payload));
+                    }
+                } else {
+                    if (callback != null) mainHandler.post(() -> callback.onError("Ошибка сервера: " + response.code()));
+                }
+            }
+        });
+    }
+
+    public void loginUser(String email, String password, ApiCallback<Map<String, Object>> callback) {
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("email", email);
+        payload.put("password", password);
+
+        String jsonBody = gson.toJson(payload);
+        RequestBody body = RequestBody.create(jsonBody, JSON);
+
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/auth/login")
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (callback != null) mainHandler.post(() -> callback.onError(e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String respStr = response.body().string();
+                        Map<String, Object> map = gson.fromJson(respStr, new TypeToken<Map<String, Object>>(){}.getType());
+                        Map<String, Object> userData = (Map<String, Object>) map.get("data");
+                        if (callback != null) mainHandler.post(() -> callback.onSuccess(userData));
+                    } catch (Exception ex) {
+                        if (callback != null) mainHandler.post(() -> callback.onSuccess(payload));
+                    }
+                } else {
+                    if (callback != null) mainHandler.post(() -> callback.onError("Ошибка сервера: " + response.code()));
                 }
             }
         });

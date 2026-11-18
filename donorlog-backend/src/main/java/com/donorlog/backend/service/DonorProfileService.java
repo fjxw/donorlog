@@ -43,15 +43,19 @@ public class DonorProfileService {
 
         // Также синхронизируем с таблицей users для pgAdmin
         try {
-            String email = (dto.getUserId() != null && dto.getUserId().contains("@"))
-                    ? dto.getUserId()
-                    : "alexey.ryakhovsky@example.com";
+            String email = (dto.getUserId() != null && !dto.getUserId().trim().isEmpty())
+                    ? dto.getUserId().trim().toLowerCase()
+                    : "default_user";
             UserEntity user = userRepository.findByEmail(email).orElseGet(UserEntity::new);
             user.setEmail(email);
-            user.setFullName(dto.getFullName() != null ? dto.getFullName() : "Ряховский Алексей Александрович");
-            user.setBloodGroup(dto.getBloodGroup());
-            user.setRhFactor(dto.getRhFactor());
-            user.setRegion("г. Москва");
+            if (dto.getFullName() != null && !dto.getFullName().trim().isEmpty()) {
+                user.setFullName(dto.getFullName().trim());
+            } else if (user.getFullName() == null) {
+                user.setFullName(email);
+            }
+            if (dto.getBloodGroup() != null) user.setBloodGroup(dto.getBloodGroup());
+            if (dto.getRhFactor() != null) user.setRhFactor(dto.getRhFactor());
+            if (user.getRegion() == null) user.setRegion("г. Москва");
             if (user.getCreatedAt() == null) {
                 user.setCreatedAt(System.currentTimeMillis());
             }

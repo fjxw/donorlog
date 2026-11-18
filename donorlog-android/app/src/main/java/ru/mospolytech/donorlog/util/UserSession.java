@@ -44,7 +44,14 @@ public class UserSession {
     }
 
     public String getName() {
-        return prefs.getString(KEY_NAME, "Ряховский Алексей Александрович");
+        String name = prefs.getString(KEY_NAME, null);
+        if (name != null && !name.trim().isEmpty()) {
+            return name;
+        }
+        if (isLoggedIn()) {
+            return "Ряховский Алексей Александрович";
+        }
+        return "Гость";
     }
 
     public void setName(String name) {
@@ -52,11 +59,26 @@ public class UserSession {
     }
 
     public String getEmail() {
-        return prefs.getString(KEY_EMAIL, "alexey.ryakhovsky@example.com");
+        String email = prefs.getString(KEY_EMAIL, null);
+        if (email != null && !email.trim().isEmpty()) {
+            return email;
+        }
+        if (isLoggedIn()) {
+            return "alexey.ryakhovsky@example.com";
+        }
+        return "";
     }
 
     public void setEmail(String email) {
         prefs.edit().putString(KEY_EMAIL, email).apply();
+    }
+
+    public void logout() {
+        prefs.edit()
+                .putBoolean(KEY_LOGGED_IN, false)
+                .putString(KEY_NAME, "")
+                .putString(KEY_EMAIL, "")
+                .apply();
     }
 
     public String getBloodGroup() {

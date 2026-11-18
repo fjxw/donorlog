@@ -146,9 +146,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void logoutAndSwitchToAuth() {
-        session.setLoggedIn(false);
-        session.setName("");
-        session.setEmail("");
+        session.logout();
         Toast.makeText(this, "Вы вышли из учетной записи", Toast.LENGTH_SHORT).show();
         etFullName.setText("");
         etEmail.setText("");
@@ -199,43 +197,102 @@ public class AuthActivity extends AppCompatActivity {
             return;
         }
 
-        String name = etFullName.getText() != null ? etFullName.getText().toString().trim() : "";
-        if ((isRegisterMode || session.isLoggedIn()) && TextUtils.isEmpty(name)) {
-            etFullName.setError("Укажите ваше ФИО");
-            return;
-        }
+        String password = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
 
-        String selectedRegion = chipGroupRegion.getCheckedChipId() == R.id.chipRegionMoscow
+        final String selectedRegion = chipGroupRegion.getCheckedChipId() == R.id.chipRegionMoscow
                 ? UserSession.REGION_MOSCOW
                 : UserSession.REGION_OTHER;
 
-        String bloodGroup = "A(II)";
         int bloodId = chipGroupBlood.getCheckedChipId();
+        final String bloodGroup;
         if (bloodId == R.id.chipBloodO) bloodGroup = "O(I)";
         else if (bloodId == R.id.chipBloodB) bloodGroup = "B(III)";
         else if (bloodId == R.id.chipBloodAB) bloodGroup = "AB(IV)";
+        else bloodGroup = "A(II)";
 
-        String rh = chipGroupRh.getCheckedChipId() == R.id.chipRhMinus ? "Rh-" : "Rh+";
+        final String rh = chipGroupRh.getCheckedChipId() == R.id.chipRhMinus ? "Rh-" : "Rh+";
 
         if (session.isLoggedIn()) {
+            // Режим редактирования существующего профиля
+            String name = etFullName.getText() != null ? etFullName.getText().toString().trim() : "";
+            if (TextUtils.isEmpty(name)) {
+                etFullName.setError("Укажите ваше ФИО");
+                return;
+            }
             session.saveProfile(name, email, bloodGroup, rh, selectedRegion, true);
+            apiClient.registerUser(email, name, password, bloodGroup, rh, selectedRegion, null);
             apiClient.syncProfile(name, email, bloodGroup, rh, null);
             Toast.makeText(this, "Данные профиля успешно обновлены", Toast.LENGTH_SHORT).show();
+            proceedToMain();
         } else if (isRegisterMode) {
-            session.saveProfile(name, email, bloodGroup, rh, selectedRegion, true);
-            apiClient.syncProfile(name, email, bloodGroup, rh, null);
-            Toast.makeText(this, "Регистрация успешна! Добро пожаловать, " + name, Toast.LENGTH_SHORT).show();
-        } else {
-            String existingName = session.getName();
-            if (TextUtils.isEmpty(existingName) || existingName.equals("Ряховский Алексей Александрович")) {
-                existingName = "Ряховский Алексей Александрович";
+            // Режим регистрации нового донора
+            String name = etFullName.getText() != null ? etFullName.getText().toString().trim() : "";
+            if (TextUtils.isEmpty(name)) {
+                etFullName.setError("Укажите ваше ФИО");
+                return;
             }
-            session.saveProfile(existingName, email, bloodGroup, rh, selectedRegion, true);
-            apiClient.syncProfile(existingName, email, bloodGroup, rh, null);
-            Toast.makeText(this, "Успешная авторизация в системе", Toast.LENGTH_SHORT).show();
-        }
+            btnSubmitAuth.setEnabled(false);
+            btnSubmitAuth.setText("Регистрация...");
 
-        proceedToMain();
+            apiClient.registerUser(email, name, password, bloodGroup, rh, selectedRegion, new DonorApiClient.ApiCallback<java.util.Map<String, Object>>() {
+                @Override
+                public void onSuccess(java.util.Map<String, Object> data) {
+                    session.saveProfile(name, email, bloodGroup, rh, selectedRegion, true);
+                    Toast.makeText(AuthActivity.this, "Регистрация успешна! Добро пожаловать, " + name, Toast.LENGTH_SHORT).show();
+                    proceedToMain();
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    session.saveProfile(name, email, bloodGroup, rh, selectedRegion, true);
+                    Toast.makeText(AuthActivity.this, "Сохранено локально (Сервер: " + errorMessage + ")", Toast.LENGTH_LONG).show();
+                    proceedToMain();
+                }
+            });
+        } else {
+            // Режим входа
+            btnSubmitAuth.setEnabled(false);
+            btnSubmitAuth.setText("Вход...");
+
+            apiClient.loginUser(email, password, new DonorApiClient.ApiCallback<java.util.Map<String, Object>>() {
+                @Override
+                public void onSuccess(java.util.Map<String, Object> data) {
+                    String serverFullName = null;
+                    String serverBlood = bloodGroup;
+                    String serverRh = rh;
+                    String serverRegion = selectedRegion;
+
+                    if (data != null) {
+                        if (data.get("fullName") != null) serverFullName = String.valueOf(data.get("fullName"));
+                        if (data.get("bloodGroup") != null) serverBlood = String.valueOf(data.get("bloodGroup"));
+                        if (data.get("rhFactor") != null) serverRh = String.valueOf(data.get("rhFactor"));
+                        if (data.get("region") != null) serverRegion = String.valueOf(data.get("region"));
+                    }
+
+                    if (TextUtils.isEmpty(serverFullName) || "null".equals(serverFullName)) {
+                        String prefix = email.split("@")[0];
+                        if (prefix.length() > 1) {
+                            serverFullName = Character.toUpperCase(prefix.charAt(0)) + prefix.substring(1) + " Донор";
+                        } else {
+                            serverFullName = prefix;
+                        }
+                    }
+
+                    session.saveProfile(serverFullName, email, serverBlood, serverRh, serverRegion, true);
+                    Toast.makeText(AuthActivity.this, "Добро пожаловать, " + serverFullName, Toast.LENGTH_SHORT).show();
+                    proceedToMain();
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    String prefix = email.split("@")[0];
+                    String fallbackName = Character.toUpperCase(prefix.charAt(0)) + prefix.substring(1) + " Донор";
+                    session.saveProfile(fallbackName, email, bloodGroup, rh, selectedRegion, true);
+                    Toast.makeText(AuthActivity.this, "Вход выполнен: " + fallbackName, Toast.LENGTH_SHORT).show();
+                    proceedToMain();
+                }
+            });
+        }
     }
 
     private void proceedToMain() {

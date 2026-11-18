@@ -120,9 +120,10 @@ public class AnalyticsActivity extends AppCompatActivity {
     }
 
     private void shareCertificate() {
+        ru.mospolytech.donorlog.util.UserSession session = ru.mospolytech.donorlog.util.UserSession.getInstance(this);
         String certText = "Справка донора крови «DonorLog»\n"
-                + "Донор: Ряховский Алексей Александрович\n"
-                + "Группа крови: A(II) Rh+ (Kell-отрицательный)\n"
+                + "Донор: " + session.getName() + "\n"
+                + "Группа крови: " + session.getFullBloodType() + "\n"
                 + "Всего донаций: 3\n"
                 + "Спасенных жизней (оценка): 7\n"
                 + "Суммарный объем сданной крови и компонентов: 1.5 л\n"

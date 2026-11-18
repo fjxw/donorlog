@@ -20,6 +20,7 @@ public class UserEntity {
     private String rhFactor;
     private String region;
     private String role = "ROLE_DONOR";
+    private String password;
     private Long createdAt;
 
     public UserEntity() {
@@ -89,6 +90,14 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getCreatedAt() {
