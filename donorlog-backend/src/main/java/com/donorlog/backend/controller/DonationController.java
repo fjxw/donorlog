@@ -26,8 +26,11 @@ public class DonationController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<DonationDto>>> getAll(
-            @RequestParam(defaultValue = "default_user") String userId) {
-        List<DonationDto> list = donationService.getAllForUser(userId);
+            @RequestParam(required = false) String userId) {
+        String effectiveUserId = (userId != null && !userId.trim().isEmpty())
+                ? userId
+                : "alexey.ryakhovsky@example.com";
+        List<DonationDto> list = donationService.getAllForUser(effectiveUserId);
         return ResponseEntity.ok(ApiResponse.ok(list));
     }
 

@@ -128,7 +128,7 @@ public class DataInitializer implements CommandLineRunner {
         if (donationRepository.count() == 0) {
             DonationEntity d1 = new DonationEntity(
                     UUID.randomUUID().toString(),
-                    "default-user",
+                    "alexey.ryakhovsky@example.com",
                     LocalDate.now().minusDays(65),
                     "WHOLE_BLOOD",
                     450,
@@ -145,7 +145,7 @@ public class DataInitializer implements CommandLineRunner {
 
             DonationEntity d2 = new DonationEntity(
                     UUID.randomUUID().toString(),
-                    "default-user",
+                    "alexey.ryakhovsky@example.com",
                     LocalDate.now().minusDays(130),
                     "WHOLE_BLOOD",
                     450,
@@ -162,7 +162,7 @@ public class DataInitializer implements CommandLineRunner {
 
             DonationEntity d3 = new DonationEntity(
                     UUID.randomUUID().toString(),
-                    "default-user",
+                    "alexey.ryakhovsky@example.com",
                     LocalDate.now().minusDays(200),
                     "PLASMA",
                     600,

@@ -19,10 +19,26 @@ public class DonationService {
     }
 
     public List<DonationDto> getAllForUser(String userId) {
-        return repository.findByUserIdAndIsDeletedFalseOrderByDonationDateDesc(userId)
+        List<DonationDto> list = repository.findByUserIdAndIsDeletedFalseOrderByDonationDateDesc(userId)
                 .stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
+
+        if (list.isEmpty() && ("alexey.ryakhovsky@example.com".equalsIgnoreCase(userId) || "default-user".equals(userId) || "default_user".equals(userId))) {
+            List<DonationDto> fallback = repository.findByUserIdAndIsDeletedFalseOrderByDonationDateDesc("default-user")
+                    .stream()
+                    .map(this::toDto)
+                    .collect(Collectors.toList());
+            if (fallback.isEmpty()) {
+                fallback = repository.findByUserIdAndIsDeletedFalseOrderByDonationDateDesc("alexey.ryakhovsky@example.com")
+                        .stream()
+                        .map(this::toDto)
+                        .collect(Collectors.toList());
+            }
+            return fallback;
+        }
+
+        return list;
     }
 
     public DonationDto getById(String id) {

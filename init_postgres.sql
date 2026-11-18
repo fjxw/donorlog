@@ -71,10 +71,18 @@ CREATE TABLE IF NOT EXISTS blood_stations (
     ab_neg_status VARCHAR(32) DEFAULT 'YELLOW'
 );
 
--- 5. Начальные демонстрационные данные (соответствуют данным в мобильном клиенте)
+-- 5. Начальные демонстрационные данные (соответствуют учетной записи автора проекта)
+INSERT INTO users (email, full_name, blood_group, rh_factor, region, role, created_at)
+VALUES 
+    ('alexey.ryakhovsky@example.com', 'Ряховский Алексей Александрович', 'A(II)', 'Rh+', 'г. Москва', 'ROLE_DONOR', 1768464000000)
+ON CONFLICT (email) DO UPDATE SET 
+    full_name = EXCLUDED.full_name,
+    blood_group = EXCLUDED.blood_group,
+    rh_factor = EXCLUDED.rh_factor;
+
 INSERT INTO donor_profiles (user_id, full_name, blood_group, rh_factor, kell_factor, gender, birth_date, updated_at)
 VALUES 
-    ('default_user', 'Ряховский Алексей Александрович', 'A(II)', 'Rh+', 'Kell-', 'MALE', '2000-05-14', EXTRACT(EPOCH FROM NOW()) * 1000)
+    ('alexey.ryakhovsky@example.com', 'Ряховский Алексей Александрович', 'A(II)', 'Rh+', 'Kell-', 'MALE', '2000-05-14', EXTRACT(EPOCH FROM NOW()) * 1000)
 ON CONFLICT (user_id) DO UPDATE SET 
     full_name = EXCLUDED.full_name,
     blood_group = EXCLUDED.blood_group,
@@ -83,9 +91,9 @@ ON CONFLICT (user_id) DO UPDATE SET
 
 INSERT INTO donations (id, user_id, donation_date, component_type, volume_ml, station_name, hemoglobin_grams_per_liter, systolic_bp, diastolic_bp, pulse_bpm, wellbeing, notes, updated_at, is_deleted)
 VALUES
-    ('don-1', 'default_user', '2026-01-15', 'WHOLE_BLOOD', 450, 'Центр крови им. О.К. Гаврилова (Бакинская ул.)', 148, 120, 80, 72, 'GOOD', 'Первая кроводача в новом году. Самочувствие отличное.', 1768464000000, FALSE),
-    ('don-2', 'default_user', '2026-03-20', 'WHOLE_BLOOD', 450, 'Центр крови им. О.К. Гаврилова (Поликарпова ул.)', 145, 118, 78, 70, 'GOOD', 'Плановая донация цельной крови.', 1774003200000, FALSE),
-    ('don-3', 'default_user', '2026-05-25', 'WHOLE_BLOOD', 450, 'НИИ скорой помощи им. Н.В. Склифосовского', 142, 122, 80, 74, 'GOOD', 'Донация в отделении трансфузиологии Склифа.', 1779696000000, FALSE)
+    ('don-1', 'alexey.ryakhovsky@example.com', '2026-01-15', 'WHOLE_BLOOD', 450, 'Центр крови им. О.К. Гаврилова (Бакинская ул.)', 148, 120, 80, 72, 'GOOD', 'Первая кроводача в новом году. Самочувствие отличное.', 1768464000000, FALSE),
+    ('don-2', 'alexey.ryakhovsky@example.com', '2026-03-20', 'WHOLE_BLOOD', 450, 'Центр крови им. О.К. Гаврилова (Поликарпова ул.)', 145, 118, 78, 70, 'GOOD', 'Плановая донация цельной крови.', 1774003200000, FALSE),
+    ('don-3', 'alexey.ryakhovsky@example.com', '2026-05-25', 'WHOLE_BLOOD', 450, 'НИИ скорой помощи им. Н.В. Склифосовского', 142, 122, 80, 74, 'GOOD', 'Донация в отделении трансфузиологии Склифа.', 1779696000000, FALSE)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO blood_stations (station_name, city, address, phone, schedule, need_status, o_pos_status, o_neg_status, a_pos_status, a_neg_status, b_pos_status, b_neg_status, ab_pos_status, ab_neg_status)
