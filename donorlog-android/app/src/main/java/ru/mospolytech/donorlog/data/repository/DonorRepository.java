@@ -123,7 +123,7 @@ public class DonorRepository {
         final String userId = session.getEmail();
         executor.execute(() -> {
             List<DonationEntity> localDonations = donationDao.getAllDonations(userId);
-            apiClient.syncDonations(localDonations, new DonorApiClient.ApiCallback<Integer>() {
+            apiClient.syncDonations(userId, localDonations, new DonorApiClient.ApiCallback<Integer>() {
                 @Override
                 public void onSuccess(Integer result) {
                     // Refresh stations after sync
@@ -135,20 +135,26 @@ public class DonorRepository {
                                     bloodStationDao.deleteAll();
                                     bloodStationDao.insertAll(stations);
                                 }
-                                mainHandler.post(() -> callback.onComplete("Синхронизировано записей: " + result));
+                                if (callback != null) {
+                                    mainHandler.post(() -> callback.onComplete("Синхронизировано записей: " + result));
+                                }
                             });
                         }
 
                         @Override
                         public void onError(String message) {
-                            mainHandler.post(() -> callback.onComplete("Синхронизировано донаций: " + result + ", станции не обновлены"));
+                            if (callback != null) {
+                                mainHandler.post(() -> callback.onComplete("Синхронизировано донаций: " + result + ", станции не обновлены"));
+                            }
                         }
                     });
                 }
 
                 @Override
                 public void onError(String message) {
-                    mainHandler.post(() -> callback.onComplete("Ошибка соединения: " + message));
+                    if (callback != null) {
+                        mainHandler.post(() -> callback.onComplete("Ошибка соединения: " + message));
+                    }
                 }
             });
         });

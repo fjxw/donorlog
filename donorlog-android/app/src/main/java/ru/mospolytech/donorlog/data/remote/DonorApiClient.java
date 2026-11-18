@@ -125,9 +125,10 @@ public class DonorApiClient {
         });
     }
 
-    public void syncDonations(List<DonationEntity> localDonations, ApiCallback<Integer> callback) {
+    public void syncDonations(String userId, List<DonationEntity> localDonations, ApiCallback<Integer> callback) {
+        String effectiveUserId = (userId != null && !userId.trim().isEmpty()) ? userId.trim() : "alexey.ryakhovsky@example.com";
         Map<String, Object> syncPayload = new HashMap<>();
-        syncPayload.put("userId", "default_user");
+        syncPayload.put("userId", effectiveUserId);
         syncPayload.put("donorId", 1);
         syncPayload.put("lastSyncTimestamp", 0L);
         syncPayload.put("clientTimestamp", System.currentTimeMillis());
@@ -137,10 +138,11 @@ public class DonorApiClient {
         List<Map<String, Object>> donationList = new ArrayList<>();
         if (localDonations != null) {
             for (DonationEntity d : localDonations) {
+                String dUser = (d.getUserId() != null && !d.getUserId().trim().isEmpty()) ? d.getUserId() : effectiveUserId;
                 Map<String, Object> item = new HashMap<>();
-                item.put("id", "don-" + d.getId());
+                item.put("id", (d.getServerSyncId() != null && !d.getServerSyncId().isEmpty()) ? d.getServerSyncId() : ("don-" + Math.abs(dUser.hashCode()) + "-" + d.getId()));
                 item.put("clientUuid", "local-" + d.getId());
-                item.put("userId", "default_user");
+                item.put("userId", dUser);
                 item.put("componentType", d.getComponentType());
                 item.put("donationDate", sdf.format(new java.util.Date(d.getDonationDate())));
                 item.put("volumeMl", d.getVolumeMl());
@@ -171,18 +173,26 @@ public class DonorApiClient {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                mainHandler.post(() -> callback.onError(e.getMessage()));
+                if (callback != null) {
+                    mainHandler.post(() -> callback.onError(e.getMessage()));
+                }
             }
 
             @Override
             public void onResponse(Call call, Response response) {
-                if (response.isSuccessful()) {
-                    mainHandler.post(() -> callback.onSuccess(localDonations != null ? localDonations.size() : 0));
-                } else {
-                    mainHandler.post(() -> callback.onError("Ошибка синхронизации: " + response.code()));
+                if (callback != null) {
+                    if (response.isSuccessful()) {
+                        mainHandler.post(() -> callback.onSuccess(localDonations != null ? localDonations.size() : 0));
+                    } else {
+                        mainHandler.post(() -> callback.onError("Ошибка синхронизации: " + response.code()));
+                    }
                 }
             }
         });
+    }
+
+    public void syncDonations(List<DonationEntity> localDonations, ApiCallback<Integer> callback) {
+        syncDonations(null, localDonations, callback);
     }
 
     public void syncProfile(String fullName, String email, String bloodGroup, String rhFactor, ApiCallback<Boolean> callback) {
